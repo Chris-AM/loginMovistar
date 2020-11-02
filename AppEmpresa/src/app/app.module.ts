@@ -7,6 +7,8 @@ import { ItemsComponent } from "./item/items.component";
 import { ItemDetailComponent } from "./item/item-detail.component";
 import { LoginComponent } from "./Login/login.component";
 
+import { listarEmpresasComponent } from "./listarEmpresas/listar-empresas.component";
+
 @NgModule({
     bootstrap: [
         AppComponent
@@ -19,7 +21,8 @@ import { LoginComponent } from "./Login/login.component";
         AppComponent,
         ItemsComponent,
         ItemDetailComponent,
-        LoginComponent
+        LoginComponent,
+        listarEmpresasComponent
     ],
     providers: [],
     schemas: [

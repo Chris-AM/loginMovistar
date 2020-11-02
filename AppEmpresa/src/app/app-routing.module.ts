@@ -5,10 +5,11 @@ import { NativeScriptRouterModule } from "@nativescript/angular";
 import { ItemsComponent } from "./item/items.component";
 import { ItemDetailComponent } from "./item/item-detail.component";
 import { LoginComponent } from "./Login/login.component";
+import { listarEmpresasComponent } from "./listarEmpresas/listar-empresas.component";
 
 const routes: Routes = [
     { path: "", component: LoginComponent },
-    { path: "items", component: ItemsComponent },
+    { path: "listar-empresas", component: listarEmpresasComponent },
     { path: "item/:id", component: ItemDetailComponent }
 ];
 
