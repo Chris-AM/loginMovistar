@@ -1,57 +1,14 @@
-<GridLayout id="example-background" loaded="onBackgroundLoaded">
-    <GridLayout id="form-content" class="form-content" rows="auto,*,auto">
-        <StackLayout class="top-border" row="0"></StackLayout>
-        <ScrollView row="1" class="fields-section">
-            <StackLayout>
-                <!-- Username -->
-                <GridLayout ios:columns="auto,*" android:rows="auto, auto" verticalAlignment="top">
-                    <Label text="RUT" class="field-title"></Label>
-                    <TextField id="username" row="1" class="field" hint="RUT" tap="onTextInputTapped" ></TextField>
-                </GridLayout>
-                <!-- Password -->
-                <GridLayout ios:columns="auto,*" android:rows="auto, auto" verticalAlignment="top">
-                    <Label text="Password" class="field-title" ></Label>
-                    <GridLayout row="1" columns="*, auto" class="login-password-container">
-                        <TextField #password col="0" class="eloha-font-semibold login-password-field" hint="Password"
-                            secure="true"></TextField>
-                        <Label col="1" [text]="showHideIcon" class="fa show-hide-icon"
-                            (tap)="showHidePassword()" verticalAlignment="middle"></Label>
-                    </GridLayout>
-                </GridLayout>
-                <StackLayout class="line"></StackLayout>
-                <!-- <button [nsRouterLink]="['/listar-empresas']" text="Ingresar"></button> -->
-                <button (tap)="onList()" text="Ingresar"></button>
-            </StackLayout>
-        </ScrollView>
-    </GridLayout>
-</GridLayout>
-<!-- <GridLayout row="1" rows="*, auto">
-    <GridLayout row="0" rows="auto" rows="*">
-        <ActivityIndicator color="white" horizontalAlignment="center"
-            verticalAlignment="center"></ActivityIndicator>
-    </GridLayout>
-    <GridLayout row="0" rows="*">
-        <GridLayout row="0" rows="auto, auto, auto, auto" class="container-padding" verticalAlignment="top">
-            <GridLayout row="0" rows="auto, auto, auto">
-                <Label class="eloha-font-semibold login-field-label m-b-2"
-                    row="0" text="Usuario"></Label>
-                <TextField row="1" class="eloha-font-semibold login-input-field" hint="RUT"
-                    autocapitalizationType="none" ></TextField>
-                <Label class="eloha-font-semibold m-t-2 login-field-label color-danger"
-                    row="2"></Label>
-            </GridLayout>
-            <GridLayout row="1" rows="auto, auto, auto" class="m-t-10">
-                <Label class="eloha-font-semibold login-field-label m-b-2"
-                    row="0" text="Password"></Label>
-                <GridLayout row="1" columns="*, auto" class="login-password-container" >
-                    <TextField #password col="0" class="eloha-font-semibold login-password-field" hint="Password"
-                        secure="true"></TextField>
-                    <Label col="1" [text]="showHideIcon" class="fa show-hide-icon"
-                        (tap)="showHidePassword()" verticalAlignment="middle"></Label>
-                </GridLayout>
-                <Label class="eloha-font-semibold m-t-2 login-field-label color-danger"
-                    row="2" ></Label>
-            </GridLayout>
-        </GridLayout>
-    </GridLayout>
-</GridLayout> -->
+  <FlexboxLayout class="page">
+    <StackLayout class="form">
+        <Label text="LOGO" class="header"></Label>
+        <StackLayout class="input-field">
+            <TextField class="input" hint="RUT" tap="onTextInputTapped" ></TextField>
+        </StackLayout>
+        <StackLayout class="input-field">
+            <TextField #password class="input" hint="Password" secure="true"></TextField>
+        </StackLayout>
+        <button (tap)="onList()" text="Ingresar"></button>
+        <Label text="Don’t have an account?"></Label>
+    </StackLayout>
+  </FlexboxLayout>
+
