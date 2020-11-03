@@ -1,7 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { Router } from "@angular/router";
 import { RouterExtensions } from "@nativescript/angular";
 import { Page, TextField } from "@nativescript/core";
 import { LoginService } from "./login.service";
+
 @Component({
     selector: "ns-login",
     templateUrl: "./login.component.html",
@@ -17,6 +19,7 @@ export class LoginComponent implements OnInit {
     private showPassword = false;
 
     constructor(
+      private route:Router,
       private page: Page,
       private routerExtensions: RouterExtensions,
     ) {
@@ -34,5 +37,10 @@ export class LoginComponent implements OnInit {
       this.showHideIcon = this.showPassword ? this.showIcon : this.hideIcon;
       let passField: TextField = this.passwordField.nativeElement;
       passField.secure = !passField.secure;
+    }
+
+    onList(){
+        this.route.navigate(["/listar-empresas"]);
+
     }
   }
