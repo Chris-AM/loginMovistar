@@ -8,11 +8,11 @@
     <StackLayout class="form">
         <Label text="LOGO" class="header"></Label>
         <StackLayout class="input-field">
-            <TextField class="input" hint="RUT" tap="onTextInputTapped" [(ngModel)]="ChallengeDescription"></TextField>
+            <TextField class="input-rut" hint="RUT" tap="onTextInputTapped" [(ngModel)]="ChallengeDescription"></TextField>
         </StackLayout>
-        <StackLayout class="input-field">
+        <StackLayout orientation="horizontal" class="input-field">
             <TextField #password class="input" hint="Password" (tap)="onSetChallenge()" secure="true"></TextField>
-            <Label col="1" [text]="showHideIcon" class="showhide" (tap)="showHidePassword()" verticalAlignment="middle"></Label>
+            <Label col="1" [text]="showHideIcon" class="fa fa-eye" (tap)="showHidePassword()" verticalAlignment="middle"></Label>
         </StackLayout>
         <button (tap)="onList()" text="Ingresar"></button>
         <Label text="Don’t have an account?"></Label>
