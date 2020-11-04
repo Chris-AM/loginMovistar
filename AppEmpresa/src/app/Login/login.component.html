@@ -21,10 +21,19 @@
                 <StackLayout class="line"></StackLayout>
                 <!-- <button [nsRouterLink]="['/listar-empresas']" text="Ingresar"></button> -->
                 <button (tap)="onList()" text="Ingresar"></button>
+
+                
+            </StackLayout>
+            <StackLayout>
+                <TextField hint="ingresa texto" [(ngModel)]="ChallengeDescription"></TextField>
+                <Button (tap)="onSetChallenge()" text="ingresar texto"></Button>
+                <Label [text]="currentChallenge"></Label>
             </StackLayout>
         </ScrollView>
     </GridLayout>
+
 </GridLayout>
+
 <!-- <GridLayout row="1" rows="*, auto">
     <GridLayout row="0" rows="auto" rows="*">
         <ActivityIndicator color="white" horizontalAlignment="center"

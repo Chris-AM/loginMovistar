@@ -12,6 +12,8 @@ import { LoginService } from "./login.service";
 export class LoginComponent implements OnInit {
     @ViewChild('password') passwordField: ElementRef;
     isAuthenticating = false;
+    ChallengeDescription='';
+    currentChallenge='';
 
     public hideIcon = String.fromCharCode(0xf070);
     public showIcon = String.fromCharCode(0xf06e);
@@ -43,4 +45,13 @@ export class LoginComponent implements OnInit {
         this.route.navigate(["/listar-empresas"]);
 
     }
+
+    onSetChallenge(){
+      const cleanRut = this.ChallengeDescription.replace(/[^0-9kK]+/g, "").replace(/^0+/, "").toUpperCase();
+      const verificationDigit = cleanRut.slice(-1);
+      const digits = cleanRut.slice(0, -1).split(/(?=(?:...)*$)/).join(".");
+     // return `${digits}-${verificationDigit}`;
+      this.currentChallenge = `${digits}-${verificationDigit}`;
+    }
+
   }
