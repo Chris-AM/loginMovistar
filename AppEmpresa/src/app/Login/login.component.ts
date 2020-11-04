@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
       const verificationDigit = cleanRut.slice(-1);
       const digits = cleanRut.slice(0, -1).split(/(?=(?:...)*$)/).join(".");
      // return `${digits}-${verificationDigit}`;
-      this.currentChallenge = `${digits}-${verificationDigit}`;
+      this.ChallengeDescription = `${digits}-${verificationDigit}`;
     }
 
   }
