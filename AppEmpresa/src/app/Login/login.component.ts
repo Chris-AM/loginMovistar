@@ -14,7 +14,7 @@ export class LoginComponent /*extends Error*/ implements OnInit {
   isAuthenticating = false;
   verificationDigit: string | number;
   data?: string | number;
-  
+
   lastDigit: string | number;
   alterRut = '';
   mensajeRut = '';
@@ -66,8 +66,8 @@ export class LoginComponent /*extends Error*/ implements OnInit {
       .join(".");
     return digits;
   }
-  
-  digitVerForm(rut: string) {
+
+  calcDigitVer(rut: string) {
     const sum = rut
       .split("")
       .reverse()
@@ -80,16 +80,15 @@ export class LoginComponent /*extends Error*/ implements OnInit {
     return verificationDigit;
   }
 
+
   onRutPipeAndValidation() {
     const cleanRut = this.cleanRut(this.alterRut);
     this.lastDigit = cleanRut.slice(-1);
     this.alterRut = `${this.pipeRut(cleanRut)}-${this.lastDigit}`;
     const partialRut = cleanRut.slice(0, cleanRut.length - 1);
-    this.pruebaRut = this.digitVerForm(partialRut)
+    this.verificationDigit = this.calcDigitVer(partialRut)
     if (this.verificationDigit !== this.lastDigit) {
-     let mensajeRut =  'RUT no válido';
-    } else {
-      let mensajeRut = 'Rut válido';
+     throw new Error ('Rut no válido');
     }
   }
 
