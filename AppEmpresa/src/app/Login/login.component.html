@@ -1,21 +1,16 @@
-<!--StackLayout>
-    <TextField hint="ingresa texto" ></TextField>
-    <Button (tap)="onSetChallenge()" text="ingresar texto"></Button>
-    <Label [text]="currentChallenge"></Label>
-</StackLayout-->
-
 <FlexboxLayout class="page">
     <StackLayout class="form">
         <Label text="LOGO" class="header"></Label>
         <StackLayout class="input-field">
-            <TextField class="input" hint="RUT" tap="onTextInputTapped" [(ngModel)]="ChallengeDescription"></TextField>
+            <TextField class="input" hint="RUT" tap="onTextInputTapped" [(ngModel)]="alterRut"></TextField>
         </StackLayout>
         <StackLayout class="input-field">
-            <TextField #password class="input" hint="Password" (tap)="onSetChallenge()" secure="true"></TextField>
+            <TextField #password class="input" hint="Password" (tap)="onRutPipeAndValidation()" secure="true"></TextField>
             <Label col="1" [text]="showHideIcon" class="showhide" (tap)="showHidePassword()" verticalAlignment="middle"></Label>
+            <TextField [text]="pruebaRut"></TextField>
+
         </StackLayout>
         <button (tap)="onList()" text="Ingresar"></button>
         <Label text="Don’t have an account?"></Label>
     </StackLayout>
 </FlexboxLayout>
-
