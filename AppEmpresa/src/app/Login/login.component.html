@@ -2,21 +2,13 @@
     <StackLayout class="form">
         <Label text="LOGO" class="header"></Label>
         <StackLayout class="input-field">
-<<<<<<< HEAD
             <TextField class="input" hint="RUT" tap="onTextInputTapped" [(ngModel)]="alterRut"></TextField>
         </StackLayout>
         <StackLayout class="input-field">
             <TextField #password class="input" hint="Password" (tap)="onRutPipeAndValidation()" secure="true"></TextField>
-            <Label col="1" [text]="showHideIcon" class="showhide" (tap)="showHidePassword()" verticalAlignment="middle"></Label>
+            <Label col="1" [text]="showHideIcon" class="showhide fa fa-eye" (tap)="showHidePassword()" verticalAlignment="middle"></Label>
             <TextField [text]="mensajeRut"></TextField>
 
-=======
-            <TextField class="input-rut" hint="RUT" tap="onTextInputTapped" [(ngModel)]="ChallengeDescription"></TextField>
-        </StackLayout>
-        <StackLayout orientation="horizontal" class="input-field">
-            <TextField #password class="input" hint="Password" (tap)="onSetChallenge()" secure="true"></TextField>
-            <Label col="1" [text]="showHideIcon" class="fa fa-eye" (tap)="showHidePassword()" verticalAlignment="middle"></Label>
->>>>>>> features/iconoEnmascaramiento
         </StackLayout>
         <button (tap)="onList()" text="Ingresar"></button>
         <Label text="Don’t have an account?"></Label>
