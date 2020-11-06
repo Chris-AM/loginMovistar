@@ -1,4 +1,6 @@
 import { Injectable } from "@angular/core";
+import { HttpClient } from '@angular/common/http'
+import { HttpHeaders } from "@angular/common/http";
 
 import { Item } from "./item";
 
@@ -6,6 +8,10 @@ import { Item } from "./item";
     providedIn: "root"
 })
 export class ItemService {
+    
+
+    constructor(private http: HttpClient){}
+
     private items = new Array<Item>(
         { id: 1, name: "Ter Stegen", role: "Goalkeeper" },
         { id: 3, name: "Piqué", role: "Defender" },
@@ -38,4 +44,10 @@ export class ItemService {
     getItem(id: number): Item {
         return this.items.filter((item) => item.id === id)[0];
     }
+
+    getJson(url: string, body: any, params){
+       
+         return this.http.post(url, body, params);
+    }
 }
+ 

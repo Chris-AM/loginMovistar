@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ItemEventData } from "@nativescript/core";
 import { listaEmpresasService, Item } from "./lista-empresas.service";
+import { ItemService } from '../item/item.service'
 
 @Component({
     moduleId: module.id,
@@ -8,11 +9,22 @@ import { listaEmpresasService, Item } from "./lista-empresas.service";
 })
 export class listarEmpresasComponent implements OnInit {
     items: Array<Item>;
+    headers:any;
+    
+    constructor(private _listaService: listaEmpresasService, public json: ItemService) { 
 
-    constructor(private _listaService: listaEmpresasService) { }
+        
+        const body = { username: '12752279-0', password:'Titi2012' };
+        const params = { apikey : 'd01d4fb6-de04-4662-9aa9-7a3fa06cb5c6' }
+        this.json.getJson('https://apix.movistar.cl/oauth2/login-app/loginCajetin?apikey=d01d4fb6-de04-4662-9aa9-7a3fa06cb5c6',body, params ).subscribe((res:any) =>{
+            this.items = res;
+            console.log(res);
+        })
+        
+    }
 
     ngOnInit(): void {
-        this.items = this._listaService.getItems();
+        //this.items = this._listaService.getItems();
     }
 
     onItemTap(args: ItemEventData) {

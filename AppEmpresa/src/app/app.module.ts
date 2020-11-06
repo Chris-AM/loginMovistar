@@ -7,6 +7,7 @@ import { ItemDetailComponent } from "./item/item-detail.component";
 import { LoginComponent } from "./Login/login.component";
 
 import { listarEmpresasComponent } from "./listarEmpresas/listar-empresas.component";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
     bootstrap: [
@@ -15,7 +16,8 @@ import { listarEmpresasComponent } from "./listarEmpresas/listar-empresas.compon
     imports: [
         NativeScriptModule,
         AppRoutingModule,
-        NativeScriptFormsModule
+        NativeScriptFormsModule,
+        HttpClientModule
     ],
     declarations: [
         AppComponent,
