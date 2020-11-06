@@ -14,11 +14,12 @@ export class listarEmpresasComponent implements OnInit {
     constructor(private _listaService: listaEmpresasService, public json: ItemService) { 
 
         
-        const body = { username: '12752279-0', password:'Titi2012' };
-        const params = { apikey : 'd01d4fb6-de04-4662-9aa9-7a3fa06cb5c6' }
-        this.json.getJson('https://apix.movistar.cl/oauth2/login-app/loginCajetin?apikey=d01d4fb6-de04-4662-9aa9-7a3fa06cb5c6',body, params ).subscribe((res:any) =>{
+      
+        this.json.postLoginP1('https://apix.movistar.cl/oauth2/login-app/loginCajetin?apikey=d01d4fb6-de04-4662-9aa9-7a3fa06cb5c6').subscribe((res:any) =>{
             this.items = res;
             console.log(res);
+        }, (err:any) =>{
+            console.error("error ====>", err);
         })
         
     }
