@@ -8,7 +8,6 @@
             <TextField #password class="input" hint="Password" (tap)="onRutPipeAndValidation()" secure="true"></TextField>
             <Label col="1" [text]="showHideIcon" class="showhide" (tap)="showHidePassword()" verticalAlignment="middle"></Label>
             <TextField [text]="mensajeRut"></TextField>
-            <TextField [text]="lastDigit"></TextField>
 
         </StackLayout>
         <button (tap)="onList()" text="Ingresar"></button>

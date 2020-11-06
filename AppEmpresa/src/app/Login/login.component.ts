@@ -9,7 +9,7 @@ import { LoginService } from "./login.service";
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.css"],
 })
-export class LoginComponent /*extends Error*/ implements OnInit {
+export class LoginComponent  implements OnInit {
   @ViewChild("password") passwordField: ElementRef;
   isAuthenticating = false;
   verificationDigit: string | number;
@@ -29,12 +29,8 @@ export class LoginComponent /*extends Error*/ implements OnInit {
     private route: Router,
     private page: Page,
     private routerExtensions: RouterExtensions,
-    /*message: string,
-    data?: string | number*/
-  ) {
-    /*super(message);
-    this.data = data;*/
-  }
+  
+  ) {  }
 
   ngOnInit() {
     this.showHideIcon = this.hideIcon;
@@ -80,16 +76,20 @@ export class LoginComponent /*extends Error*/ implements OnInit {
     return verificationDigit;
   }
 
+  
 
   onRutPipeAndValidation() {
+    
     const cleanRut = this.cleanRut(this.alterRut);
     this.lastDigit = cleanRut.slice(-1);
     this.alterRut = `${this.pipeRut(cleanRut)}-${this.lastDigit}`;
     const partialRut = cleanRut.slice(0, cleanRut.length - 1);
     this.verificationDigit = this.calcDigitVer(partialRut)
     if (this.verificationDigit !== this.lastDigit) {
-     throw new Error ('Rut no válido');
+      this.mensajeRut = 'Rut no válido';
+      throw new Error('Rut no válido');
     }
+    
   }
 
 
