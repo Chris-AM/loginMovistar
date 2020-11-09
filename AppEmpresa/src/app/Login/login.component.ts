@@ -6,7 +6,7 @@ import { LoginService } from "./login.service";
 
 @Component({
   selector: "ns-login",
-  templateUrl: "./login.component.html",
+templateUrl: "./login.component.html",
   styleUrls: ["./login.component.css"],
 })
 export class LoginComponent  implements OnInit {
@@ -24,6 +24,7 @@ export class LoginComponent  implements OnInit {
   public showIcon = String.fromCharCode(0xf06e);
   public showHideIcon: any;
   private showPassword = false;
+  public isVisible: boolean = false;
 
   constructor(
     private route: Router,
@@ -86,8 +87,11 @@ export class LoginComponent  implements OnInit {
     const partialRut = cleanRut.slice(0, cleanRut.length - 1);
     this.verificationDigit = this.calcDigitVer(partialRut)
     if (this.verificationDigit !== this.lastDigit) {
-      this.mensajeRut = 'Rut no válido';
+      this.isVisible = !this.isVisible;
+      this.mensajeRut = 'El Rut y/o contraseña son incorrectos.';
       throw new Error('Rut no válido');
+    } else {
+      this.mensajeRut = '';
     }
     
   }

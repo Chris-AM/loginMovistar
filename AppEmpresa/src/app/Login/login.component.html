@@ -7,7 +7,7 @@
         <StackLayout class="input-field">
             <TextField #password class="input" hint="Password" (tap)="onRutPipeAndValidation()" secure="true"></TextField>
             <Label col="1" [text]="showHideIcon" class="showhide" (tap)="showHidePassword()" verticalAlignment="middle"></Label>
-            <TextField [text]="mensajeRut"></TextField>
+            <Label [text]="mensajeRut" *ngIf="isVisible"></Label>
 
         </StackLayout>
         <button (tap)="onList()" text="Ingresar"></button>
