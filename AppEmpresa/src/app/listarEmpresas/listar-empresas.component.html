@@ -3,7 +3,8 @@
            textFieldHintColor="whitesmoke"
            textFieldBackgroundColor="orangered">
     </SearchBar>
-    <ListView [items]="items" (itemTap)="onItemTap($event)" class="list-group">
+    <Label *ngFor="let item of empresas" [text]="item.customerName"></Label>
+    <ListView class="list-group">
         <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
             <!-- The item template can only have a single root view container (e.g. GridLayout, StackLayout, etc.)-->
             <GridLayout>

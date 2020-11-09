@@ -5,6 +5,7 @@ import { AppComponent } from "./app.component";
 import { ItemsComponent } from "./item/items.component";
 import { ItemDetailComponent } from "./item/item-detail.component";
 import { LoginComponent } from "./Login/login.component";
+import { HttpClientModule } from "@angular/common/http";
 
 import { listarEmpresasComponent } from "./listarEmpresas/listar-empresas.component";
 
@@ -15,7 +16,8 @@ import { listarEmpresasComponent } from "./listarEmpresas/listar-empresas.compon
     imports: [
         NativeScriptModule,
         AppRoutingModule,
-        NativeScriptFormsModule
+        NativeScriptFormsModule,
+        HttpClientModule
     ],
     declarations: [
         AppComponent,
