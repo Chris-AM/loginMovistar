@@ -1,3 +1,4 @@
+import { isEmptyExpression } from "@angular/compiler";
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { RouterExtensions } from "@nativescript/angular";
@@ -14,11 +15,16 @@ export class LoginComponent  implements OnInit {
   isAuthenticating = false;
   verificationDigit: string | number;
   data?: string | number;
-
   lastDigit: string | number;
   alterRut = '';
   mensajeRut = '';
   pruebaRut = '';
+  mensBienvenida = '¡Nos alegra verte aquí!';
+  infoEntrada = 'Ingresaa conocer el resumen y consumo de tus cuentas';
+  pistaPassword = 'La misma que usas para ingresar a la sucursal virtual';
+  recRut = 'Recordar mi Rut';
+  olvidoPass = 'Si olvidaste tu contraseña, haz clic aquí';
+
 
   public hideIcon = String.fromCharCode(0xf070);
   public showIcon = String.fromCharCode(0xf06e);
@@ -86,6 +92,13 @@ export class LoginComponent  implements OnInit {
     this.alterRut = `${this.pipeRut(cleanRut)}-${this.lastDigit}`;
     const partialRut = cleanRut.slice(0, cleanRut.length - 1);
     this.verificationDigit = this.calcDigitVer(partialRut)
+    
+    //this isn't working yet
+    if (this.alterRut.valueOf.length == 0) {
+      
+      return this.mensajeRut = 'Todos los campos marcados son requeridos';
+    }
+
     if (this.verificationDigit !== this.lastDigit) {
       this.isVisible = !this.isVisible;
       this.mensajeRut = 'El Rut y/o contraseña son incorrectos.';

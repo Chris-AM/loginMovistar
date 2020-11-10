@@ -14,7 +14,6 @@
 
 .input-field {
     margin-bottom: 20;
-    ;
 }
 
 .input {
@@ -23,4 +22,28 @@
 
 .err {
     font-family: "Font Awesome 5 Free", "fa-solid-900";
+}
+
+.switchPosition {
+    margin-right: 30;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.fSize20 {
+    font-size: 20;
+}
+
+.center {
+    text-align: center;
+}
+
+.btnColor {
+    background-color: black;
+}
+
+.btnFontColor {
+    color: #ffffff;
 }
