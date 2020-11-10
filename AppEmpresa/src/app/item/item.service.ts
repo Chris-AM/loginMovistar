@@ -8,7 +8,6 @@ import { Item } from "./item";
     providedIn: "root"
 })
 export class ItemService {
-    
 
     constructor(private http: HttpClient){}
 
@@ -45,15 +44,6 @@ export class ItemService {
         return this.items.filter((item) => item.id === id)[0];
     }
 
-    postLoginP1(url: string){
-        const username = '12752279-0';
-        const password = 'Titi2012' ;
-        //const params = { apikey : 'd01d4fb6-de04-4662-9aa9-7a3fa06cb5c6' }
-
-        return this.http.post(url, {username,password} , {
-             headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'),
-             params: new HttpParams().set('apikey', 'd01d4fb6-de04-4662-9aa9-7a3fa06cb5c6' )
-        });
-    }
+   
 }
  

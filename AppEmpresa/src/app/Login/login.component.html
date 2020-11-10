@@ -1,12 +1,14 @@
 <FlexboxLayout class="page">
     <StackLayout class="form">
         <Label text="LOGO" class="header"></Label>
+        <ActivityIndicator [busy]="isLoading" horizontalAlignment="center" verticalAlignment="center" [visibility]="isLoading? 'visible':'collapse'"></ActivityIndicator>
+
         <StackLayout class="input-field">
             <TextField class="input" hint="RUT" tap="onTextInputTapped" [(ngModel)]="ChallengeDescription"></TextField>
         </StackLayout>
         <StackLayout class="input-field">
-            <TextField #password class="input" hint="Password" (tap)="onSetChallenge()" secure="true"></TextField>
-            <Label col="1" [text]="showHideIcon" class="showhide" (tap)="showHidePassword()" verticalAlignment="middle"></Label>
+            <TextField #password class="input" [ngStyle]="{'border-color': getColor()}" hint="Password" (tap)="onSetChallenge()" secure="true" [(ngModel)]="passwordInput"></TextField>
+            <Label col="1" [text]="showHideIcon" class="showhide" (tap)="showHidePassword()" verticalAlignment="middle" ></Label>
         </StackLayout>
         <button (tap)="onList()" text="Ingresar"></button>
         <Label text="Don’t have an account?"></Label>

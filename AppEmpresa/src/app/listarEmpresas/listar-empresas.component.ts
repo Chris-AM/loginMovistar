@@ -12,16 +12,7 @@ export class listarEmpresasComponent implements OnInit {
     headers:any;
     
     constructor(private _listaService: listaEmpresasService, public json: ItemService) { 
-
-        
-      
-        this.json.postLoginP1('https://apix.movistar.cl/oauth2/login-app/loginCajetin?apikey=d01d4fb6-de04-4662-9aa9-7a3fa06cb5c6').subscribe((res:any) =>{
-            this.items = res;
-            console.log(res);
-        }, (err:any) =>{
-            console.error("error ====>", err);
-        })
-        
+       
     }
 
     ngOnInit(): void {
