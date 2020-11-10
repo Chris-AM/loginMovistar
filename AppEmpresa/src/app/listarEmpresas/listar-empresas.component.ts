@@ -1,25 +1,68 @@
 import { Component, OnInit } from "@angular/core";
-import { ItemEventData } from "@nativescript/core";
-import { listaEmpresasService, Item } from "./lista-empresas.service";
-import { ItemService } from '../item/item.service'
+import { EmpresaService } from "./empresa.service";
+import { ItemEventData, SearchBar } from "@nativescript/core";
+
 
 @Component({
     moduleId: module.id,
-    templateUrl: "./listar-empresas.component.html"
+    templateUrl: "./listar-empresas.component.html",
 })
 export class listarEmpresasComponent implements OnInit {
-    items: Array<Item>;
-    headers:any;
-    
-    constructor(private _listaService: listaEmpresasService, public json: ItemService) { 
-       
+    tempEmpresas = [];
+    //empresas: Empresas;
+    arrayEmpresas = [];
+
+    description = "";
+    searchPhrase: string;
+
+    constructor(private _listaService: EmpresaService)
+     {
+         //Get list companies
+        this._listaService.getEmpresas().subscribe((data) => {
+
+            for (let item of data.Customer) {
+                this.arrayEmpresas.push(
+                    item
+                );
+            }
+        });
+
     }
 
     ngOnInit(): void {
-        //this.items = this._listaService.getItems();
+        //Init Temporal Array to search
+        this.tempEmpresas = this.arrayEmpresas;
     }
 
-    onItemTap(args: ItemEventData) {
-        console.log(`Index: ${args.index}; View: ${args.view} ; Item: ${this.items[args.index]}`);
+    onSubmit(eventSearch) {
+        const searchBar = eventSearch.object as SearchBar;
+        console.log(`buscar : ${searchBar.text}`);
+    }
+
+    onTextChanged(eventSearch) {
+        const searchBar = eventSearch.object as SearchBar;
+        this.description = searchBar.text;
+
+        const valuesFiltered = this.arrayEmpresas.filter((data) =>
+            data.customerName.includes(this.description)
+        ); //filter list with text of searchbar
+
+        console.log(`Valor Input! value: ${searchBar.text}`);
+
+        this.arrayEmpresas = valuesFiltered; //upload list
+    }
+
+    onClear(eventSearch) {
+        const searchBar = eventSearch.object as SearchBar;
+        this.arrayEmpresas = this.tempEmpresas;
+        console.log(`Borrando Input`);
+    }
+
+    onItemTap(eventList: ItemEventData) {
+        console.log(
+            `Index: ${eventList.index}; View: ${eventList.view} ; Item: ${
+                this.arrayEmpresas[eventList.index].customerName
+            }`
+        );
     }
 }

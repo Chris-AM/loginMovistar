@@ -1,16 +1,17 @@
-<StackLayout orientation="vertical">
-    <SearchBar hint="Search"
-           textFieldHintColor="whitesmoke"
-           textFieldBackgroundColor="orangered">
-    </SearchBar>
-    <ListView [items]="items" (itemTap)="onItemTap($event)" class="list-group">
-        <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
-            <!-- The item template can only have a single root view container (e.g. GridLayout, StackLayout, etc.)-->
-            <GridLayout>
-                <Label [text]="item.name" class="list-group-item"></Label>
+<StackLayout orientation="vertical" padding="2">
+
+    <SearchBar hint="Enter search term here ..." [text]="searchPhrase" (textChange)="onTextChanged($event)"
+        (clear)="onClear($event)" (submit)="onSubmit($event)"></SearchBar>
+
+    <!--<Label *ngFor="let item of arrayEmpresas" [text]="item.customerName"></Label>-->
+
+    <ListView [items]="arrayEmpresas" (itemTap)="onItemTap($event)" class="list-group">
+        <ng-template let-item="item">
+            <GridLayout columns="auto,100" rows="auto,auto" width="300" height="300">
+                <Label [text]="item.customerName" col="0" row="0"></Label>
+                <Label [text]="'Rut: ' + item.customerLegalId" col="0" row="1"></Label>
             </GridLayout>
         </ng-template>
     </ListView>
+
 </StackLayout>
-
-
