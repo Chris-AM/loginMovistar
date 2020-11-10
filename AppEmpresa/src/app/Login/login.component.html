@@ -8,12 +8,11 @@
         </StackLayout>
         <StackLayout class="input-field">
             <Label></Label>
-            <TextField class="input" hint="12.345.678-9" tap="onTextInputTapped" [(ngModel)]="alterRut"></TextField>
+            <TextField class="input" hint="12.345.678-9" tap="onTextInputTapped" [(ngModel)]="alterRut" [ngStyle]="{'border-color': getColorUser()}"></TextField>
             <Label [text]="mensajeRut" *ngIf="isVisible" class="err"></Label>
-            <TextField [(ngModel)]="passwordInput" #password class="input" [ngStyle]="{'border-color': getColor()}" hint="Password" (tap)="onRutPipeAndValidation()" secure="true"></TextField>
+            <TextField [(ngModel)]="passwordInput" #password class="input" [ngStyle]="{'border-color': getColorPass()}" hint="Password" (tap)="onRutPipeAndValidation()" secure="true"></TextField>
             <label text="{{ pistaPassword }}"></label>
             <Label col="1" [text]="showHideIcon" class="showhide" (tap)="showHidePassword()" verticalAlignment="middle"></Label>
-
             <Switch left="10" top="110" color="white" backgroundColor="black" offBackgroundColor="red" text="{{ recRut }}"></Switch>
             <Button class="btnColor btnFontColor" (tap)="onList()" text="Ingresar"></Button>
             <Label class="center" text="{{ olvidoPass }}"></Label>

@@ -115,10 +115,18 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  getColor() {
+  getColorPass() {
     if (!this.passwordInput && this.setColor) {
       return 'red'
     }
+  }
+
+  getColorUser() {
+    console.log('entré a la función');
+    if (!this.alterRut && this.setColor) {
+      return 'red'
+    }
+    
   }
 
 
@@ -138,7 +146,6 @@ export class LoginComponent implements OnInit {
     } else {
       this.mensajeRut = '';
     }
-
 
   }
 }
