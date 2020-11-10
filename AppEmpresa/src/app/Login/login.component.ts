@@ -20,7 +20,7 @@ export class LoginComponent  implements OnInit {
   mensajeRut = '';
   pruebaRut = '';
   mensBienvenida = '¡Nos alegra verte aquí!';
-  infoEntrada = 'Ingresaa conocer el resumen y consumo de tus cuentas';
+  infoEntrada = 'Ingresa a conocer el resumen y consumo de tus cuentas';
   pistaPassword = 'La misma que usas para ingresar a la sucursal virtual';
   recRut = 'Recordar mi Rut';
   olvidoPass = 'Si olvidaste tu contraseña, haz clic aquí';
@@ -36,7 +36,7 @@ export class LoginComponent  implements OnInit {
     private route: Router,
     private page: Page,
     private routerExtensions: RouterExtensions,
-  
+
   ) {  }
 
   ngOnInit() {
@@ -83,19 +83,19 @@ export class LoginComponent  implements OnInit {
     return verificationDigit;
   }
 
-  
+
 
   onRutPipeAndValidation() {
-    
+
     const cleanRut = this.cleanRut(this.alterRut);
     this.lastDigit = cleanRut.slice(-1);
     this.alterRut = `${this.pipeRut(cleanRut)}-${this.lastDigit}`;
     const partialRut = cleanRut.slice(0, cleanRut.length - 1);
     this.verificationDigit = this.calcDigitVer(partialRut)
-    
+
     //this isn't working yet
     if (this.alterRut.valueOf.length == 0) {
-      
+
       return this.mensajeRut = 'Todos los campos marcados son requeridos';
     }
 
@@ -106,7 +106,7 @@ export class LoginComponent  implements OnInit {
     } else {
       this.mensajeRut = '';
     }
-    
+
   }
 
 
