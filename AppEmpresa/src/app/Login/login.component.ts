@@ -1,16 +1,17 @@
-import { isEmptyExpression } from "@angular/compiler";
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild, Renderer2 } from "@angular/core";
 import { Router } from "@angular/router";
 import { RouterExtensions } from "@nativescript/angular";
-import { Page, TextField } from "@nativescript/core";
+import { EventData, Page, TextField, Observable } from "@nativescript/core";
 import { LoginService } from "./login.service";
+import { ActivityIndicator } from "@nativescript/core/ui/activity-indicator";
+
 
 @Component({
   selector: "ns-login",
-templateUrl: "./login.component.html",
+  templateUrl: "./login.component.html",
   styleUrls: ["./login.component.css"],
 })
-export class LoginComponent  implements OnInit {
+export class LoginComponent implements OnInit {
   @ViewChild("password") passwordField: ElementRef;
   isAuthenticating = false;
   verificationDigit: string | number;
@@ -19,6 +20,9 @@ export class LoginComponent  implements OnInit {
   alterRut = '';
   mensajeRut = '';
   pruebaRut = '';
+  passwordInput = '';
+  isLoading = false;
+  setColor = false;
   mensBienvenida = '¡Nos alegra verte aquí!';
   infoEntrada = 'Ingresaa conocer el resumen y consumo de tus cuentas';
   pistaPassword = 'La misma que usas para ingresar a la sucursal virtual';
@@ -36,8 +40,10 @@ export class LoginComponent  implements OnInit {
     private route: Router,
     private page: Page,
     private routerExtensions: RouterExtensions,
+    public loginService: LoginService,
+    private renderer: Renderer2
   
-  ) {  }
+  ) { }
 
   ngOnInit() {
     this.showHideIcon = this.hideIcon;
@@ -48,10 +54,6 @@ export class LoginComponent  implements OnInit {
     this.showHideIcon = this.showPassword ? this.showIcon : this.hideIcon;
     let passField: TextField = this.passwordField.nativeElement;
     passField.secure = !passField.secure;
-  }
-
-  onList() {
-    this.route.navigate(["/listar-empresas"]);
   }
 
   cleanRut(rut: string) {
@@ -83,7 +85,42 @@ export class LoginComponent  implements OnInit {
     return verificationDigit;
   }
 
-  
+  async onList() {
+
+    let password = this.passwordInput;
+    let user = this.alterRut;
+
+    if (user && password) {
+
+      this.isLoading = true;
+      let response = await this.loginService.postLoginP1(user, password);
+      
+      if (response) {
+      
+        console.log(response)
+        this.isLoading = false;
+        this.route.navigate(["/listar-empresas"]);
+      } else {
+      
+        this.isLoading = false;
+        console.log("user or password empty");
+      
+      }
+      
+    } else {
+      
+      this.setColor = true;
+      console.log("user or password empty");
+    
+    }
+  }
+
+  getColor() {
+    if (!this.passwordInput && this.setColor) {
+      return 'red'
+    }
+  }
+
 
   onRutPipeAndValidation() {
     
@@ -93,21 +130,27 @@ export class LoginComponent  implements OnInit {
     const partialRut = cleanRut.slice(0, cleanRut.length - 1);
     this.verificationDigit = this.calcDigitVer(partialRut)
     
-    //this isn't working yet
-    if (this.alterRut.valueOf.length == 0) {
-      
-      return this.mensajeRut = 'Todos los campos marcados son requeridos';
-    }
-
+   
     if (this.verificationDigit !== this.lastDigit) {
-      this.isVisible = !this.isVisible;
-      this.mensajeRut = 'El Rut y/o contraseña son incorrectos.';
+      this.isVisible = true;
+      this.mensajeRut = 'El Rut ingresado es incorrecto.';
       throw new Error('Rut no válido');
     } else {
       this.mensajeRut = '';
     }
-    
+
+
   }
-
-
 }
+  
+
+  
+
+
+  
+
+  
+   
+
+
+
