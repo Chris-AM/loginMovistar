@@ -1,14 +1,20 @@
 <FlexboxLayout class="page">
     <StackLayout class="form">
-        <Label text="LOGO" class="header"></Label>
-        <StackLayout class="input-field">
-            <TextField class="input" hint="RUT" tap="onTextInputTapped" [(ngModel)]="ChallengeDescription"></TextField>
+        <Image width="100" height="100" stretch="aspectFit" row="0" col="0" src="res://logo_negocios"></Image>
+        <StackLayout>
+            <Label class="bold center fSize20" text="{{ mensBienvenida }}"></Label>
+            <Label class="center" text="{{ infoEntrada }}"></Label>
         </StackLayout>
         <StackLayout class="input-field">
-            <TextField #password class="input" hint="Password" (tap)="onSetChallenge()" secure="true"></TextField>
+            <Label></Label>
+            <TextField class="input" hint="12.345.678-9" tap="onTextInputTapped" [(ngModel)]="alterRut"></TextField>
+            <Label [text]="mensajeRut" *ngIf="isVisible" class="err"></Label>
+            <TextField #password class="input" hint="Password" (tap)="onRutPipeAndValidation()" secure="true"></TextField>
+            <label text="{{ pistaPassword }}"></label>
             <Label col="1" [text]="showHideIcon" class="showhide" (tap)="showHidePassword()" verticalAlignment="middle"></Label>
         </StackLayout>
-        <button (tap)="onList()" text="Ingresar"></button>
-        <Label text="Don’t have an account?"></Label>
+        <Switch left="10" top="110" color="white" backgroundColor="black" offBackgroundColor="red" text="{{ recRut }}"></Switch>
+        <Button class="btnColor btnFontColor" (tap)="onList()" text="Ingresar"></Button>
+        <Label class="center" text="{{ olvidoPass }}"></Label>
     </StackLayout>
 </FlexboxLayout>
