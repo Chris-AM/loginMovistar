@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { EmpresaService } from "./empresa.service";
 import { ItemEventData, SearchBar } from "@nativescript/core";
+import { ActivatedRoute, Params } from '@angular/router';
 
 
 @Component({
@@ -15,10 +16,14 @@ export class listarEmpresasComponent implements OnInit {
     description = "";
     searchPhrase: string;
 
-    constructor(private _listaService: EmpresaService)
+    constructor(private _listaService: EmpresaService,private route: ActivatedRoute)
      {
-         //Get list companies
-        this._listaService.getEmpresas().subscribe((data) => {
+
+        let rut = this.route.snapshot.params.rut;
+        let access_token = this.route.snapshot.params.access_token;
+
+        //Get list companies
+        this._listaService.getEmpresas(rut, access_token).subscribe((data) => {
 
             for (let item of data.Customer) {
                 this.arrayEmpresas.push(

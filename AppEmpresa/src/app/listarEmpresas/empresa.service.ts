@@ -9,10 +9,11 @@ export class EmpresaService {
 
     constructor(private http: HttpClient) { }
 
-    getEmpresas(): Observable<any> {
+    getEmpresas(rut, access_token): Observable<any> {
 
-        var token="XMz7jtybpskapXWnoUfat5by4MNlf6VMockxzugViQ6n9nq6V5Wtn2"
-        return this.http.get('https://apix.movistar.cl/sitecorporate/V1/contact/127522790/customers',
+        var token=access_token;
+        let uri = `https://apix.movistar.cl/sitecorporate/V1/contact/${rut}/customers`
+        return this.http.get(uri,
         {
             headers: new HttpHeaders().set('Authorization', 'Bearer '+token)  
         }

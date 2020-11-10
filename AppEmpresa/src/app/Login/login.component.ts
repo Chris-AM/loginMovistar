@@ -97,9 +97,12 @@ export class LoginComponent implements OnInit {
       
       if (response) {
       
-        console.log(response)
+        console.log("response from p3",response.access_token, response.rut)
+        let rut = response.rut + response.dv;        
+        let access_token = response.access_token;
         this.isLoading = false;
-        this.route.navigate(["/listar-empresas"]);
+        this.route.navigate(["/listar-empresas",{rut:rut ,access_token:access_token}]);
+
       } else {
       
         this.isLoading = false;
@@ -122,7 +125,6 @@ export class LoginComponent implements OnInit {
   }
 
   getColorUser() {
-    console.log('entré a la función');
     if (!this.alterRut && this.setColor) {
       return 'red'
     }

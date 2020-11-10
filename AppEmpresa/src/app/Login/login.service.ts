@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from '@angular/common/http'
 import { HttpHeaders } from "@angular/common/http";
-import { AsyncAction } from "rxjs/internal/scheduler/AsyncAction";
 
 @Injectable({
     providedIn: "root"
@@ -13,8 +12,7 @@ export class LoginService {
     constructor(private http: HttpClient){}
     
     async postLoginP1(username:string, password:string){
-        const url = 'https://apix.movistar.cl/oauth2/login-app/loginCajetin?apikey=d01d4fb6-de04-4662-9aa9-7a3fa06cb5c6';
-        
+        const url = 'https://apix.movistar.cl/oauth2/login-app/loginCajetin?apikey=d01d4fb6-de04-4662-9aa9-7a3fa06cb5c6';        
         const bodyData = `username=${'12752279-0'}&password=${'Titi2012'}`; //DEV
         //const bodyData = `username=${username}&password=${password}`; //PROD     
         
