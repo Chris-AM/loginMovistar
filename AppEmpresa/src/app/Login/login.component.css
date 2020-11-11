@@ -2,7 +2,7 @@
     width: 100%;
     margin-left: 30;
     margin-right: 30;
-    
+
 }
 
 .header {
@@ -19,14 +19,16 @@
 .input {
     placeholder-color: #B8B8B8;
     font-size: 15;
+    margin-bottom: 50;
 }
 
 .bold {
     font-weight: bold;
 }
 
-.fSize20 {
-    font-size: 20;
+.logo {
+   margin-top: 28;
+   margin-bottom: 11;
 }
 
 .center {
@@ -37,20 +39,20 @@
     font-size: 20;
     font-weight: bold;
     color: #3c5261;
+    margin-bottom: 8;
 }
 
-.btnColor {
-    width: 328;
+.btnProperties{
+    /* width: 328; */
     height: 48;
-    margin: 63 0 16 0.1;
-    padding: 10 130 8 134;
-    border-radius: 24;
+    /* margin: 6 0 16 0.1; */
+    /* padding: 10 130 8 134; */
+    border-radius: 50;
     background-color: #0b2739;
-}
-
-.btnFontColor {
+    /* fonts */
     color: #ffffff;
 }
+
 .showhide{
     font-size: 25;
     z-index: -1;
@@ -60,15 +62,23 @@
     placeholder-color: #B8B8B8;
     font-size: 15;
     width: 320;
+    margin-bottom: 5;
 }
 .msjinfo-label{
     text-align: center;
     color: #50535a;
+    margin-bottom: 18;
 }
 .msjpass-label{
     text-align:center;
     color: #50535a;
+    margin-bottom: 20;
 }
 .labelrecordar{
     margin-top: 17vh;
 }
+.switch {
+    margin-bottom: 60;
+}
+
+
