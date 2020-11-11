@@ -5,9 +5,9 @@ import { Color } from "@nativescript/core";
     selector: "FloatLabel",
     moduleId: module.id, 
     template: `
-        <AbsoluteLayout marginTop="5" marginBottom="5">
-            <Label #label row="1" [text]="placeholder" top="15" left="18" fontSize="24" class="input"></Label>    
-            <TextField #textField row="1" width="90%" top="10" (focus)="onFocus()" (blur)="onBlur()" borderWidth="2" height="40" borderColor="#229EFF" borderRadius="10" padding="2"></TextField>
+        <AbsoluteLayout marginTop="20" marginBottom="5">
+            <TextField #textField row="0" width="90%" top="10" (focus)="onFocus()" (blur)="onBlur()" borderWidth="2" height="40" borderColor="#229EFF" borderRadius="10" padding="2"></TextField>
+            <Label #label row="0" zIndex="99" marginTop="3" padding="5" [text]="placeholder" top="15" backgroundColor="white" left="20" fontSize="16" class="input"></Label>    
         </AbsoluteLayout >
     `
 })
@@ -29,9 +29,8 @@ export class FloatLabel {
 
         // animate the label sliding up and less transparent.
         label.animate({
-            translate: { x: -25, y: - 30 },
-            scale: { x: 0.5, y: 0.5},
-            left:0
+            translate: { x: -5, y: - 20 },
+            scale: { x: 0.8, y: 0.8}
         }).then(() => { }, () => { });
 
         // set the border bottom color to green to indicate focus
