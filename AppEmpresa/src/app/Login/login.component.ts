@@ -4,7 +4,7 @@ import { RouterExtensions } from "@nativescript/angular";
 import { EventData, Page, TextField, Observable } from "@nativescript/core";
 import { LoginService } from "./login.service";
 import { ActivityIndicator } from "@nativescript/core/ui/activity-indicator";
-
+import { refactoringText } from '../shared/refactoringTexts';
 
 @Component({
   selector: "ns-login",
@@ -23,12 +23,12 @@ export class LoginComponent implements OnInit {
   passwordInput = '';
   isLoading = false;
   setColor = false;
-  mensBienvenida = '¡Nos alegra verte aquí!';
-  infoEntrada = 'Ingresaa conocer el resumen y consumo de tus cuentas';
-  pistaPassword = 'La misma que usas para ingresar a la sucursal virtual';
-  recRut = 'Recordar mi Rut';
-  olvidoPass = 'Si olvidaste tu contraseña, haz clic aquí';
-
+  welcome: string = '';
+  info:string = '';
+  passHint: string = '';
+  rememberPass:string = '';
+  passForgotten:string = '';
+  private refText = new refactoringText();
 
   public hideIcon = String.fromCharCode(0xf070);
   public showIcon = String.fromCharCode(0xf06e);
@@ -41,12 +41,19 @@ export class LoginComponent implements OnInit {
     private page: Page,
     private routerExtensions: RouterExtensions,
     public loginService: LoginService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
   
-  ) { }
+  ) { 
+    
+  }
 
   ngOnInit() {
     this.showHideIcon = this.hideIcon;
+    this.welcome = this.refText.welcome;
+    this.info = this.refText.info;
+    this.passHint = this.refText.passHint;
+    this.rememberPass = this.refText.rememberPass;
+    this.passForgotten = this.refText.passForgotten;
   }
 
   showHidePassword() {
