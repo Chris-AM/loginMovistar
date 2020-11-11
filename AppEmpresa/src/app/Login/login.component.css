@@ -55,13 +55,13 @@
 
 .showhide{
     font-size: 25;
-    z-index: -1;
-    left: 300;
+    z-index: 1;
+    left: 250;
 }
 .input-pass{
     placeholder-color: #B8B8B8;
     font-size: 15;
-    width: 320;
+    width: 270;
     margin-bottom: 5;
 }
 .msjinfo-label{
@@ -72,7 +72,7 @@
 .msjpass-label{
     text-align:center;
     color: #50535a;
-    margin-bottom: 20;
+   /* margin-bottom: 20;*/
 }
 .labelrecordar{
     margin-top: 17vh;

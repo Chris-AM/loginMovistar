@@ -134,21 +134,24 @@ export class LoginComponent implements OnInit {
 
   onRutPipeAndValidation() {
     
-    const cleanRut = this.cleanRut(this.alterRut);
-    this.lastDigit = cleanRut.slice(-1);
-    this.alterRut = `${this.pipeRut(cleanRut)}-${this.lastDigit}`;
-    const partialRut = cleanRut.slice(0, cleanRut.length - 1);
-    this.verificationDigit = this.calcDigitVer(partialRut)
-    
-   
-    if (this.verificationDigit !== this.lastDigit) {
-      this.isVisible = true;
-      this.mensajeRut = 'El Rut ingresado es incorrecto.';
-      throw new Error('Rut no válido');
-    } else {
-      this.mensajeRut = '';
+    if(this.alterRut){
+      const cleanRut = this.cleanRut(this.alterRut);
+      this.lastDigit = cleanRut.slice(-1);
+      this.alterRut = `${this.pipeRut(cleanRut)}-${this.lastDigit}`;
+      const partialRut = cleanRut.slice(0, cleanRut.length - 1);
+      this.verificationDigit = this.calcDigitVer(partialRut)
+      
+     
+      if (this.verificationDigit !== this.lastDigit) {
+        this.isVisible = true;
+        this.mensajeRut = 'El Rut ingresado es incorrecto.';
+        throw new Error('Rut no válido');
+      } else {
+        this.mensajeRut = '';
+      }
+  
     }
-
+   
   }
 }
   
