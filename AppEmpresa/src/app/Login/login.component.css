@@ -39,3 +39,12 @@
 .btnFontColor {
     color: #ffffff;
 }
+.showhide{
+    font-size: 25;
+    z-index: -1;
+    left: 300;
+}
+.input-pass{
+    
+    width: 320;
+}
