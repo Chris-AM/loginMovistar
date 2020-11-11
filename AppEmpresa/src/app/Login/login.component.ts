@@ -4,6 +4,7 @@ import { RouterExtensions } from "@nativescript/angular";
 import { EventData, Page, TextField, Observable } from "@nativescript/core";
 import { LoginService } from "./login.service";
 import { ActivityIndicator } from "@nativescript/core/ui/activity-indicator";
+import { FloatLabel } from "../float-label/float-label.component";
 
 
 @Component({

@@ -6,7 +6,10 @@
             <Label class="bold center fSize20" text="{{ mensBienvenida }}"></Label>
             <Label class="center" text="{{ infoEntrada }}"></Label>
         </StackLayout>
-        <StackLayout class="input-field">
+        <StackLayout class="input-field"><br><br><br><br>
+            <FloatLabel placeholder="Username">
+            </FloatLabel><br>
+            <br>
             <Label></Label>
             <TextField class="input" hint="12.345.678-9" tap="onTextInputTapped" [(ngModel)]="alterRut" [ngStyle]="{'border-color': getColorUser()}"></TextField>
             <Label [text]="mensajeRut" *ngIf="isVisible" class="err"></Label>
@@ -16,6 +19,8 @@
             <Switch left="10" top="110" color="white" backgroundColor="black" offBackgroundColor="red" text="{{ recRut }}"></Switch>
             <Button class="btnColor btnFontColor" (tap)="onList()" text="Ingresar"></Button>
             <Label class="center" text="{{ olvidoPass }}"></Label>
+
+            
         </StackLayout>
     </StackLayout>
 </FlexboxLayout>

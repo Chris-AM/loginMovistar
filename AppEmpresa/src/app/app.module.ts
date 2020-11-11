@@ -8,6 +8,8 @@ import { LoginComponent } from "./Login/login.component";
 
 import { listarEmpresasComponent } from "./listarEmpresas/listar-empresas.component";
 import { HttpClientModule } from "@angular/common/http";
+import { FloatLabel } from "./float-label/float-label.component";
+
 
 @NgModule({
     bootstrap: [
@@ -25,7 +27,8 @@ import { HttpClientModule } from "@angular/common/http";
         ItemsComponent,
         ItemDetailComponent,
         LoginComponent,
-        listarEmpresasComponent
+        listarEmpresasComponent,
+        FloatLabel
     ],
     providers: [],
     schemas: [
