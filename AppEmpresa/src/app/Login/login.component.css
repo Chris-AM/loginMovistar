@@ -2,6 +2,7 @@
     width: 100%;
     margin-left: 30;
     margin-right: 30;
+    
 }
 
 .header {
@@ -11,12 +12,12 @@
     font-weight: 600;
     margin-bottom: 70;
 }
-
 .input-field {
     margin-bottom: 20;
 }
 
 .input {
+    placeholder-color: #B8B8B8;
     font-size: 15;
 }
 
@@ -31,9 +32,20 @@
 .center {
     text-align: center;
 }
+.login-label2{
+    text-align: center;
+    font-size: 20;
+    font-weight: bold;
+    color: #3c5261;
+}
 
 .btnColor {
-    background-color: black;
+    width: 328;
+    height: 48;
+    margin: 63 0 16 0.1;
+    padding: 10 130 8 134;
+    border-radius: 24;
+    background-color: #0b2739;
 }
 
 .btnFontColor {
@@ -45,6 +57,18 @@
     left: 300;
 }
 .input-pass{
-    
+    placeholder-color: #B8B8B8;
+    font-size: 15;
     width: 320;
+}
+.msjinfo-label{
+    text-align: center;
+    color: #50535a;
+}
+.msjpass-label{
+    text-align:center;
+    color: #50535a;
+}
+.labelrecordar{
+    margin-top: 17vh;
 }

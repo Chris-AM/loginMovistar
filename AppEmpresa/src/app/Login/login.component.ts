@@ -24,8 +24,8 @@ export class LoginComponent implements OnInit {
   isLoading = false;
   setColor = false;
   mensBienvenida = '¡Nos alegra verte aquí!';
-  infoEntrada = 'Ingresaa conocer el resumen y consumo de tus cuentas';
-  pistaPassword = 'La misma que usas para ingresar a la sucursal virtual';
+  infoEntrada = 'Ingresa a conocer el resumen y consumo de tus cuentas';
+  pistaPassword = 'Tu contraseña de sucursal virtual';
   recRut = 'Recordar mi Rut';
   olvidoPass = 'Si olvidaste tu contraseña, haz clic aquí';
 
