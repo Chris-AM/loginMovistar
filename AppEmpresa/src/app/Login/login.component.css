@@ -12,15 +12,11 @@
     margin-bottom: 70;
 }
 
-.input-field {
-    margin-bottom: 20;
-}
-
 .input {
     placeholder-color: #B8B8B8;
     font-size: 15;
     width: 90%;
-    margin-bottom: 50;
+    margin-bottom: 40;
 }
 
 .bold {
@@ -28,11 +24,15 @@
 }
 
 .logo {
-    margin-top: 28;
+    margin-top: 50;
     margin-bottom: 11;
 }
 
 .center {
+    display: block;
+    white-space: normal;
+    text-overflow: ellipsis;
+    overflow: hidden;
     text-align: center;
 }
 
@@ -52,11 +52,14 @@
     border-radius: 50;
     background-color: #0b2739;
     /* fonts */
+    width: 90%;
     color: #ffffff;
 }
 
 .showhide {
     font-size: 25;
+    margin-top: 15;
+    margin-left: 82%;
 }
 
 .input-pass {
@@ -79,8 +82,4 @@
 
 .labelrecordar {
     margin-top: 17vh;
-}
-
-.switch {
-    margin-bottom: 60;
 }
