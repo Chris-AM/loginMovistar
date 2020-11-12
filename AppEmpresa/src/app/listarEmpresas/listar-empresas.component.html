@@ -1,15 +1,16 @@
 <StackLayout orientation="vertical" padding="2">
 
-    <SearchBar id="search-CompanySearchBar" hint="Buscar por nombre de la empresa" [text]="searchPhrase" (textChange)="onTextChanged($event)"
-        (clear)="onClear($event)" (submit)="onSubmit($event)"></SearchBar>
+    <SearchBar id="search-CompanySearchBar" hint="Buscar por nombre de la empresa" [text]="searchPhrase"
+        (textChange)="onTextChanged($event)" (clear)="onClear($event)" (submit)="onSubmit($event)"></SearchBar>
+
 
     <Label id="labelWelcome" text="Bienvenido, xxxxxxxxxxx"></Label>
-    <Label id="labelSubWelcome" text="Elige la empresa que quieres gestionar" ></Label>
+    <Label id="labelSubWelcome" text="Elige la empresa que quieres gestionar"></Label>
     <!--<Label *ngFor="let item of arrayEmpresas" [text]="item.customerName"></Label>-->
 
     <ListView id="listCompany-CompanyListView" [items]="arrayEmpresas" (itemTap)="onItemTap($event)" class="list-group">
         <ng-template let-item="item">
-            <GridLayout columns="auto,auto" rows="auto,auto" >
+            <GridLayout columns="auto,auto" rows="auto,auto">
                 <Label id="nameCompany-CompanyLabel" [text]="item.customerName" col="0" row="0"></Label>
                 <Label id="rutCompany-CompanyLabel" [text]="'Rut: ' + item.customerLegalId" col="0" row="1"></Label>
             </GridLayout>
