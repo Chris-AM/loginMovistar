@@ -48,6 +48,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.page.actionBarHidden = true;
+  
+
     this.showHideIcon = this.hideIcon;
     this.welcome = this.refText.welcome;
     this.info = this.refText.info;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { EmpresaService } from "./empresa.service";
-import { ItemEventData, SearchBar } from "@nativescript/core";
+import { ItemEventData, SearchBar, Page } from "@nativescript/core";
 import { ActivatedRoute, Params } from '@angular/router';
 
 
@@ -16,7 +16,7 @@ export class listarEmpresasComponent implements OnInit {
     description = "";
     searchPhrase: string;
 
-    constructor(private _listaService: EmpresaService,private route: ActivatedRoute)
+    constructor(private _listaService: EmpresaService,private route: ActivatedRoute, private page: Page)
      {
 
         let rut = this.route.snapshot.params.rut;
@@ -36,6 +36,8 @@ export class listarEmpresasComponent implements OnInit {
 
     ngOnInit(): void {
         //Init Temporal Array to search
+        this.page.actionBarHidden = true;
+
         this.tempEmpresas = this.arrayEmpresas;
     }
 
