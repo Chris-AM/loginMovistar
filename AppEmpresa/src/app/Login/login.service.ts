@@ -14,6 +14,10 @@ export class LoginService {
     constructor(private http: HttpClient){}
     
     async postLoginP1(username:string, password:string){
+
+        if(password != 'Titi2012'){
+            return false;
+        }
         const url = `${this.url.url_base}`+`${this.url.login}`;        
         const bodyData = `username=${'12752279-0'}&password=${'Titi2012'}`; //DEV
         //const bodyData = `username=${username}&password=${password}`; //PROD     

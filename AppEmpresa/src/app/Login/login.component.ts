@@ -12,7 +12,10 @@ import { refactoringText } from '../shared/refactoringTexts';
   styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
-  @ViewChild("password") passwordField: ElementRef;
+  @ViewChild("password") passwordField: ElementRef;  
+  @ViewChild("msjRutLb") msjRutLb: ElementRef; 
+  @ViewChild("msjPassLb") msjPassLb: ElementRef;
+
   isAuthenticating = false;
   verificationDigit: string | number;
   data?: string | number;
@@ -28,13 +31,14 @@ export class LoginComponent implements OnInit {
   passHint: string = '';
   rememberPass:string = '';
   passForgotten:string = '';
+  validateRut:boolean;
   private refText = new refactoringText();
 
   public hideIcon = String.fromCharCode(0xf070);
   public showIcon = String.fromCharCode(0xf06e);
   public showHideIcon: any;
   private showPassword = false;
-  public isVisible: boolean = false;
+  //public isVisible: boolean = false;
 
   constructor(
     private route: Router,
@@ -51,11 +55,11 @@ export class LoginComponent implements OnInit {
 
     this.page.actionBarHidden = true;
   
-
+    this.mensajeRut = this.refText.text1;
     this.showHideIcon = this.hideIcon;
     this.welcome = this.refText.welcome;
     this.info = this.refText.info;
-    this.passHint = this.refText.passHint;
+    this.passHint = this.refText.text2;
     this.rememberPass = this.refText.rememberPass;
     this.passForgotten = this.refText.passForgotten;
   }
@@ -117,14 +121,14 @@ export class LoginComponent implements OnInit {
       } else {
       
         this.isLoading = false;
-        console.log("user or password empty");
+        console.log("user or password empty1");
       
       }
       
     } else {
-      
+      this.isLoading = false;
       this.setColor = true;
-      console.log("user or password empty");
+      console.log("user or password empty2");
     
     }
   }
@@ -145,6 +149,9 @@ export class LoginComponent implements OnInit {
 
   onRutPipeAndValidation() {
 
+    const label = this.msjPassLb.nativeElement;
+    this.renderer.setStyle(label, 'color', '#008edd');
+
     if(this.alterRut){
       const cleanRut = this.cleanRut(this.alterRut);
       this.lastDigit = cleanRut.slice(-1);
@@ -156,21 +163,54 @@ export class LoginComponent implements OnInit {
         this.verificationDigit = this.calcDigitVer(partialRut);     
      
         if (this.verificationDigit !== this.lastDigit) {
-          this.isVisible = true;
-          this.mensajeRut = 'El Rut ingresado es incorrecto.';
-          throw new Error('Rut no válido');
+          //this.isVisible = true;
+          console.log("rut no valido")
+          this.validateRut = false;
+          this.mensajeRut = this.refText.textError;
+          //throw new Error('Rut no válido');
         } else {
-          this.mensajeRut = '';
+          this.validateRut = true;
+          this.mensajeRut = this.refText.text1;
         }
 
       } else {
         this.alterRut = ``;
       }
+    } else {
+      //console.log("rut en blanco")
+      
     }
+
   }
 
   isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
+  }
+
+  tapRut(){
+    console.log("tapRut")
+    const label = this.msjRutLb.nativeElement;
+    this.renderer.setStyle(label, 'color', '#008edd');
+  }
+
+  outRut(){
+    if(this.validateRut){
+      console.log("blurRut")
+      const label = this.msjRutLb.nativeElement;
+      this.renderer.setStyle(label, 'color', '#50535a');
+    } else {
+      const label = this.msjRutLb.nativeElement;
+      this.renderer.setStyle(label, 'color', '#eb3434');
+    }
+  }  
+
+  outPass(){
+    
+      console.log("outPass")
+      const label = this.msjPassLb.nativeElement;
+      this.renderer.setStyle(label, 'color', '#50535a');
+  
+    
   }
 }
   
