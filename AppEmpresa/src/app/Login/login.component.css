@@ -19,6 +19,7 @@
 .input {
     placeholder-color: #B8B8B8;
     font-size: 15;
+    width: 90%;
     margin-bottom: 50;
 }
 
@@ -56,14 +57,12 @@
 
 .showhide {
     font-size: 25;
-    z-index: 1;
 }
 
 .input-pass {
     placeholder-color: #B8B8B8;
-    font-size: 15;
-    /*width: 100%;*/
-    margin-bottom: 5;
+    width: 90%;
+    /* margin-bottom: 5;*/
 }
 
 .msjinfo-label {

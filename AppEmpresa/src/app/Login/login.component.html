@@ -7,14 +7,21 @@
             <Label id="msgInfo-loginLabel" class="msjinfo-label" text="{{ info }}"></Label>
         </StackLayout>
         <StackLayout class="input-field position">
-            <TextField id="rut-loginTextField" hint="Rut *" class="input" #textField borderWidth="2" height="54" borderColor="#229EFF" borderRadius="19" padding="2" [(ngModel)]="alterRut" [ngStyle]="{'border-color': getColorUser()}"></TextField>
+            <GridLayout columns="auto" rows="auto">
+                <TextField row="0" id="rut-loginTextField" hint="Rut *" class="input" #textField borderWidth="2" height="54" borderColor="#229EFF" borderRadius="19" padding="2" [(ngModel)]="alterRut" [ngStyle]="{'border-color': getColorUser()}"></TextField>
+
+            </GridLayout>
             <Label id="validateRut-loginLabel" [text]="mensajeRut" *ngIf="isVisible" class="err"></Label>
 
-            <GridLayout rows="54,auto">
-                <Label id="iconPassword-loginLabel" marginTop="15" [text]="showHideIcon" class="showhide fa fa-eye" (tap)="showHidePassword()" verticalAlignment="middle"></Label>
-                <TextField id="password-loginTextField" #password hint="Contraseña *" class="input-pass" borderWidth="2" height="54" borderColor="#229EFF" borderRadius="19" [(ngModel)]="passwordInput" [ngStyle]="{'border-color': getColorPass()}" (tap)="onRutPipeAndValidation()"
-                    secure="true"></TextField>
+            <GridLayout columns="auto" rows="auto">
+                <TextField id="password-loginTextField" secure="true" #password hint="Contraseña *" class="input-pass" borderWidth="2" height="54" borderColor="#229EFF" borderRadius="19" [(ngModel)]="passwordInput" [ngStyle]="{'border-color': getColorPass()}" (tap)="onRutPipeAndValidation()"
+                    row="0" colSpan="0"></TextField>
+                <Label [text]="showHideIcon" class="showhide fa fa-eye" (tap)="showHidePassword()" id="iconPassword-loginLabel" text="5" row="0" zIndex="1" style="margin-left:82%;margin-top: 4%;"></Label>
             </GridLayout>
+
+
+
+
             <label class="msjpass-label" id="verifyRut-loginLabel" text="{{ passHint }}"></label>
 
             <GridLayout rows="auto,auto" columns="90,*">
