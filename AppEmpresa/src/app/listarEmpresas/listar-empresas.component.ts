@@ -7,6 +7,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 @Component({
     moduleId: module.id,
     templateUrl: "./listar-empresas.component.html",
+    styleUrls: ["./listar-empresas.component.css"],
+
 })
 export class listarEmpresasComponent implements OnInit {
     tempEmpresas = [];
