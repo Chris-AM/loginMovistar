@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
   passHint: string = '';
   rememberPass:string = '';
   passForgotten:string = '';
+  disabled=true;
   private refText = new refactoringText();
 
   public hideIcon = String.fromCharCode(0xf070);
@@ -144,7 +145,8 @@ export class LoginComponent implements OnInit {
 
 
   onRutPipeAndValidation() {
-    
+    this.disabled=false;
+
     if(this.alterRut){
       const cleanRut = this.cleanRut(this.alterRut);
       this.lastDigit = cleanRut.slice(-1);

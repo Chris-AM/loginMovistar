@@ -19,7 +19,7 @@
                 <Switch row="0" col="0" id="saveRut-loginSwitch" color="purple" backgroundColor="black" offBackgroundColor="black" class="switch"></Switch>
                 <label row="0" col="1" id="recoverRut-loginLabel" class="labelrecordar" text="{{ rememberPass }}"></label>
             </GridLayout>
-            <Button id="logIn-loginButton" class="btnProperties" (tap)="onList()" text="Ingresar"></Button>
+            <Button id="logIn-loginButton" ng-disabled="disabled" class="btnProperties" (tap)="onList()" text="Ingresar"></Button>
             <Label id="forgetPassword-loginLabel"  text="{{ passForgotten }}"></Label>
         </StackLayout>
     </StackLayout>
