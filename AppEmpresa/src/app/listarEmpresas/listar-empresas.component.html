@@ -1,9 +1,18 @@
-<StackLayout orientation="vertical" padding="2">
+<StackLayout class="container" orientation="vertical" padding="2">
 
     <StackLayout orientation="vertical" class="header">
-        <SearchBar id="search-CompanySearchBar" hint="Busca por nombre de la empresa" [text]="searchPhrase" (textChange)="onTextChanged($event)" (clear)="onClear($event)" (submit)="onSubmit($event)" borderRadius="16" padding="2"></SearchBar>
 
-        <Label class="welcome" text="Bienvenido, Pedro Perez"></Label>
+        <StackLayout class="searchText" orientation="horizontal">
+            <Image src="res://search" width="29" height="29"></Image>
+            <TextField id="search-CompanySearchBar" hint="Busca por nombre de la empresa" [text]="searchPhrase"
+                (textChange)="onTextChanged($event)" (clear)="onClear($event)" (submit)="onSubmit($event)" padding="2">
+            </TextField>
+        </StackLayout>
+
+        <StackLayout class="titleStack" orientation="horizontal">
+            <Label class="welcome" text="¡Bienvenido, "></Label>
+            <Label class="nombre" text="Nombre!"></Label>
+        </StackLayout>
         <Label class="choose" text="Elige la empresa que quieres gestionar"></Label>
     </StackLayout>
 
@@ -12,7 +21,7 @@
 
     <ListView id="listCompany-CompanyListView" [items]="arrayEmpresas" (itemTap)="onItemTap($event)" class="list-group">
         <ng-template let-item="item">
-            <GridLayout columns="auto,100" rows="auto,auto" width="300" height="300">
+            <GridLayout columns="auto,100" rows="auto,auto" width="300">
                 <Label id="nameCompany-CompanyLabel" [text]="item.customerName" col="0" row="0"></Label>
                 <Label id="rutCompany-CompanyLabel" [text]="'Rut: ' + item.customerLegalId" col="0" row="1"></Label>
             </GridLayout>

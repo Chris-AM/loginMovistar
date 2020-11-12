@@ -1,9 +1,24 @@
-.header {
-    margin-top: 40;
+.header{
+
     background: linear-gradient(180deg, #0C273A 0%, #011422 100%);
 }
 
-.welcome {
+/*.header StackLayout{
+
+}*/
+
+Image{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+  }
+
+.titleStack{
+    horizontal-align: center;
+}
+
+.titleStack label{
     margin-top: 16;
     color: white;
     font-size: 22;
@@ -11,24 +26,38 @@
     font-weight: bold;
 }
 
-.choose {
+.titleStack label+Label {
+    color: #008EDD;
+    margin-top: 16;
+    font-size: 22;
+    text-align: center;
+    font-weight: bold;
+}
+
+/*StackLayout StackLayout label+Label Label*/
+.choose{
     color: white;
-    margin: 5, 0, 16, 0 !important;
-    font-size: 14 !important;
+    margin: 5, 0, 16, 0;
+    font-size: 14px !important;
     text-align: center;
 }
 
-.header SearchBar {
+.header TextField {
     placeholder-color: #B8B8B8;
     font-size: 14;
     height: 36;
     background: white;
     margin: 40, 16, 0, 16;
     border-radius: 16;
-    clip-path: polygon(100% 23%, 96% 18%, 94% 15%, 89% 10%, 84% 6%, 79% 3%, 73% 0%, 0% 0%, 0% 100%, 100% 100%);
+    padding-left: 20px;
 }
 
-GridLayout Label {
+.header TextField::placeholder{
+    color: #0019A5;
+}
+
+
+/* GridLayout Label {
     margin-top: 16;
     margin-left: 80;
 }
@@ -36,4 +65,5 @@ GridLayout Label {
 GridLayout Label+Label {
     margin-top: 0;
     margin-bottom: 16;
-}
+} */
+
