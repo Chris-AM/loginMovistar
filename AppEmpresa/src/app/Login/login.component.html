@@ -8,7 +8,7 @@
         </StackLayout>
         <StackLayout class="input-field position">
             <GridLayout columns="auto" rows="auto">
-                <TextField row="0" id="rut-loginTextField" hint="Rut *" class="input" #textField borderWidth="2" height="54" borderColor="#229EFF" borderRadius="19" padding="2" [(ngModel)]="alterRut" [ngStyle]="{'border-color': getColorUser()}"></TextField>
+                <TextField row="0" id="rut-loginTextField" hint="Rut *" class="input" #textField borderWidth="2" height="54" borderColor="#229EFF" borderRadius="19" [(ngModel)]="alterRut" [ngStyle]="{'border-color': getColorUser()}"></TextField>
 
             </GridLayout>
             <Label id="validateRut-loginLabel" [text]="mensajeRut" *ngIf="isVisible" class="err"></Label>
