@@ -19,13 +19,15 @@ import { HttpClientModule } from "@angular/common/http";
         NativeScriptFormsModule,
         HttpClientModule,
         NativeScriptHttpClientModule
+        
     ],
     declarations: [
         AppComponent,
         ItemsComponent,
         ItemDetailComponent,
         LoginComponent,
-        listarEmpresasComponent
+        listarEmpresasComponent,
+        
     ],
     providers: [],
     schemas: [

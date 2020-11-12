@@ -3,8 +3,8 @@
         <Image id="logo-loginImage" width="190" height="60" stretch="aspectFit" row="0" col="0" class="logo" src="res://logo_negocios"></Image>
         <ActivityIndicator id="loading-loginSpin" [busy]="isLoading" horizontalAlignment="center" verticalAlignment="center" [visibility]="isLoading? 'visible':'collapse'"></ActivityIndicator>
         <StackLayout>
-            <Label id="msgWelcome-loginLabel" class="login-label2" text="{{ mensBienvenida }}"></Label>
-            <Label id="msgInfo-loginLabel" class="msjinfo-label" text="{{ infoEntrada }}"></Label>
+            <Label id="msgWelcome-loginLabel" class="login-label2" text="{{ welcome }}"></Label>
+            <Label id="msgInfo-loginLabel" class="msjinfo-label" text="{{ info }}"></Label>
         </StackLayout>
         <StackLayout class="input-field position">
             <TextField id="rut-loginTextField" hint="Rut *" class="input" #textField borderWidth="2" height="54" borderColor="#229EFF" borderRadius="19" padding="2" [(ngModel)]="alterRut" [ngStyle]="{'border-color': getColorUser()}"></TextField>
@@ -14,13 +14,13 @@
                 <TextField id="password-loginTextField" #password hint="Contraseña *" class="input-pass"  borderWidth="2" height="54" borderColor="#229EFF" borderRadius="19" [(ngModel)]="passwordInput" [ngStyle]="{'border-color': getColorPass()}" (tap)="onRutPipeAndValidation()" secure="true"></TextField>
                 <Label id="iconPassword-loginLabel" marginTop="15" [text]="showHideIcon" class="showhide fa fa-eye" (tap)="showHidePassword()" verticalAlignment="middle"></Label>
             </AbsoluteLayout>
-            <label class="msjpass-label" id="verifyRut-loginLabel" text="{{ pistaPassword }}"></label>
+            <label class="msjpass-label" id="verifyRut-loginLabel" text="{{ passHint }}"></label>
             <GridLayout rows="auto,auto" columns="90,*">
                 <Switch row="0" col="0" id="saveRut-loginSwitch" color="purple" backgroundColor="black" offBackgroundColor="black" class="switch"></Switch>
-                <label row="0" col="1" id="recoverRut-loginLabel" class="labelrecordar" text="{{ recRut }}"></label>
+                <label row="0" col="1" id="recoverRut-loginLabel" class="labelrecordar" text="{{ rememberPass }}"></label>
             </GridLayout>
             <Button id="logIn-loginButton" class="btnProperties" (tap)="onList()" text="Ingresar"></Button>
-            <Label id="forgetPassword-loginLabel"  text="{{ olvidoPass }}"></Label>
+            <Label id="forgetPassword-loginLabel"  text="{{ passForgotten }}"></Label>
         </StackLayout>
     </StackLayout>
 </FlexboxLayout>
