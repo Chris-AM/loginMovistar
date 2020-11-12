@@ -8,19 +8,22 @@
         </StackLayout>
         <StackLayout class="input-field position">
             <TextField id="rut-loginTextField" hint="Rut *" class="input" #textField borderWidth="2" height="54" borderColor="#229EFF" borderRadius="19" padding="2" [(ngModel)]="alterRut" [ngStyle]="{'border-color': getColorUser()}"></TextField>
-            <!-- <TextField id="rut-loginTextField" class="input" hint="Rut*" tap="onTextInputTapped" ></TextField> -->
             <Label id="validateRut-loginLabel" [text]="mensajeRut" *ngIf="isVisible" class="err"></Label>
-            <AbsoluteLayout>
-                <TextField id="password-loginTextField" #password hint="Contraseña *" class="input-pass"  borderWidth="2" height="54" borderColor="#229EFF" borderRadius="19" [(ngModel)]="passwordInput" [ngStyle]="{'border-color': getColorPass()}" (tap)="onRutPipeAndValidation()" secure="true"></TextField>
+
+            <GridLayout rows="54,auto">
                 <Label id="iconPassword-loginLabel" marginTop="15" [text]="showHideIcon" class="showhide fa fa-eye" (tap)="showHidePassword()" verticalAlignment="middle"></Label>
-            </AbsoluteLayout>
+                <TextField id="password-loginTextField" #password hint="Contraseña *" class="input-pass" borderWidth="2" height="54" borderColor="#229EFF" borderRadius="19" [(ngModel)]="passwordInput" [ngStyle]="{'border-color': getColorPass()}" (tap)="onRutPipeAndValidation()"
+                    secure="true"></TextField>
+            </GridLayout>
             <label class="msjpass-label" id="verifyRut-loginLabel" text="{{ passHint }}"></label>
+
             <GridLayout rows="auto,auto" columns="90,*">
                 <Switch row="0" col="0" id="saveRut-loginSwitch" color="purple" backgroundColor="black" offBackgroundColor="black" class="switch"></Switch>
                 <label row="0" col="1" id="recoverRut-loginLabel" class="labelrecordar" text="{{ rememberPass }}"></label>
             </GridLayout>
-            <Button id="logIn-loginButton" ng-disabled="disabled" class="btnProperties" (tap)="onList()" text="Ingresar"></Button>
-            <Label id="forgetPassword-loginLabel"  text="{{ passForgotten }}"></Label>
+
+            <Button id="logIn-loginButton" class="btnProperties" (tap)="onList()" text="Ingresar"></Button>
+            <Label id="forgetPassword-loginLabel" text="{{ passForgotten }}"></Label>
         </StackLayout>
     </StackLayout>
 </FlexboxLayout>

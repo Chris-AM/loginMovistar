@@ -2,7 +2,6 @@
     width: 100%;
     margin-left: 30;
     margin-right: 30;
-
 }
 
 .header {
@@ -12,6 +11,7 @@
     font-weight: 600;
     margin-bottom: 70;
 }
+
 .input-field {
     margin-bottom: 20;
 }
@@ -27,14 +27,15 @@
 }
 
 .logo {
-   margin-top: 28;
-   margin-bottom: 11;
+    margin-top: 28;
+    margin-bottom: 11;
 }
 
 .center {
     text-align: center;
 }
-.login-label2{
+
+.login-label2 {
     text-align: center;
     font-size: 20;
     font-weight: bold;
@@ -42,7 +43,7 @@
     margin-bottom: 8;
 }
 
-.btnProperties{
+.btnProperties {
     /* width: 328; */
     height: 48;
     /* margin: 6 0 16 0.1; */
@@ -53,32 +54,34 @@
     color: #ffffff;
 }
 
-.showhide{
+.showhide {
     font-size: 25;
     z-index: 1;
-    left: 250;
 }
-.input-pass{
+
+.input-pass {
     placeholder-color: #B8B8B8;
     font-size: 15;
-    width: 270;
+    /*width: 100%;*/
     margin-bottom: 5;
 }
-.msjinfo-label{
+
+.msjinfo-label {
     text-align: center;
     color: #50535a;
     margin-bottom: 18;
 }
-.msjpass-label{
-    text-align:center;
+
+.msjpass-label {
+    text-align: center;
     color: #50535a;
-   /* margin-bottom: 20;*/
+    /* margin-bottom: 20;*/
 }
-.labelrecordar{
+
+.labelrecordar {
     margin-top: 17vh;
 }
+
 .switch {
     margin-bottom: 60;
 }
-
-

@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
   passHint: string = '';
   rememberPass:string = '';
   passForgotten:string = '';
-  disabled=true;
   private refText = new refactoringText();
 
   public hideIcon = String.fromCharCode(0xf070);
@@ -145,26 +144,33 @@ export class LoginComponent implements OnInit {
 
 
   onRutPipeAndValidation() {
-    this.disabled=false;
 
     if(this.alterRut){
       const cleanRut = this.cleanRut(this.alterRut);
       this.lastDigit = cleanRut.slice(-1);
-      this.alterRut = `${this.pipeRut(cleanRut)}-${this.lastDigit}`;
       const partialRut = cleanRut.slice(0, cleanRut.length - 1);
-      this.verificationDigit = this.calcDigitVer(partialRut)
-      
+
+      if(this.isNumeric(partialRut)){
+
+        this.alterRut = `${this.pipeRut(cleanRut)}-${this.lastDigit}`;      
+        this.verificationDigit = this.calcDigitVer(partialRut);     
      
-      if (this.verificationDigit !== this.lastDigit) {
-        this.isVisible = true;
-        this.mensajeRut = 'El Rut ingresado es incorrecto.';
-        throw new Error('Rut no válido');
+        if (this.verificationDigit !== this.lastDigit) {
+          this.isVisible = true;
+          this.mensajeRut = 'El Rut ingresado es incorrecto.';
+          throw new Error('Rut no válido');
+        } else {
+          this.mensajeRut = '';
+        }
+
       } else {
-        this.mensajeRut = '';
+        this.alterRut = ``;
       }
-  
     }
-   
+  }
+
+  isNumeric(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
   }
 }
   
