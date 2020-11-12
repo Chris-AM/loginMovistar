@@ -1,3 +1,22 @@
-.header{
+.header {
+    margin-top: 40;
     background: linear-gradient(180deg, #0C273A 0%, #011422 100%);
+}
+
+.header Label {
+    margin-top: 16;
+    color: white;
+}
+
+.header Label Label {
+    margin: 5, 0, 16, 0;
+}
+
+.header SearchBar {
+    placeholder-color: #B8B8B8;
+    font-size: 14;
+    height: 36;
+    background: white;
+    margin: 40, 16, 0, 16;
+    border-radius: 16;
 }

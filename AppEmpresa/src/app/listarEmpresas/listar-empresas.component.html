@@ -1,12 +1,12 @@
 <StackLayout orientation="vertical" padding="2">
 
-    <div class="header">
-        <SearchBar id="search-CompanySearchBar" hint="Busca por nombre de la empresa" [text]="searchPhrase" (textChange)="onTextChanged($event)"
-        (clear)="onClear($event)" (submit)="onSubmit($event)"></SearchBar>
+    <StackLayout orientation="vertical" class="header">
+        <SearchBar id="search-CompanySearchBar" hint="Busca por nombre de la empresa" [text]="searchPhrase" (textChange)="onTextChanged($event)" (clear)="onClear($event)" (submit)="onSubmit($event)" borderWidth="2" height="54" borderColor="#229EFF" borderRadius="19"
+            padding="2"></SearchBar>
 
         <Label text="Bienvenido, Pedro Perez"></Label>
         <Label text="Elige la empresa que quieres gestionar"></Label>
-    </div>
+    </StackLayout>
 
     <!--<Label *ngFor="let item of arrayEmpresas" [text]="item.customerName"></Label>-->
 
