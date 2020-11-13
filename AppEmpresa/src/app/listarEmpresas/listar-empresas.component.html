@@ -10,11 +10,14 @@
 
     <ListView id="listCompany-CompanyListView" [items]="arrayEmpresas" (itemTap)="onItemTap($event)" class="list-group">
         <ng-template let-item="item">
-            <GridLayout columns="auto,100" rows="auto,auto" width="300" height="300">
-                <StackLayout orientation="vertical">
-                    <Image src="res://store" width="29" height="29"></Image>
-                    <Label id="nameCompany-CompanyLabel" [text]="item.customerName" col="0" row="0"></Label>
-                    <Label id="rutCompany-CompanyLabel" [text]="'Rut: ' + item.customerLegalId" col="0" row="1"></Label>
+            <GridLayout columns="auto,100" rows="auto,auto" padding="2" margin="0">
+                <StackLayout orientation="horizontal">
+                    <Image src="res://store" width="29" height="29" marginLeft="2"></Image>
+                    <Image src="res://next" class="m-r-0" width="21" height="31"></Image>
+                    <StackLayout orientation="vertical">
+                        <Label id="nameCompany-CompanyLabel" class="telfRegular" [text]="item.customerName" col="0" row="0" margin="3" padding="0" marginBottom="0"></Label>
+                        <Label id="rutCompany-CompanyLabel" class="telfLight" [text]="'Rut: ' + item.customerLegalId" col="0" row="1" margin="3" padding="0" top="0"></Label>
+                    </StackLayout>
                 </StackLayout>
             </GridLayout>
         </ng-template>
