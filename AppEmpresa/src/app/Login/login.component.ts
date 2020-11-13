@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   @ViewChild("msjRutLb") msjRutLb: ElementRef;
   @ViewChild("msjPassLb") msjPassLb: ElementRef;
   @ViewChild("buttonIngresar") buttonIngresar: ElementRef;
-
+  @ViewChild("inputRut") inputRut: ElementRef;
 
 
   isAuthenticating = false;
@@ -224,12 +224,17 @@ export class LoginComponent implements OnInit {
 
 
   setEnabled() {
-    console.log("setEnabled", this.validateRut && this.passwordInput)
-    if (this.alterRut && this.passwordInput) {
+
+    const rut:TextField = <TextField> this.page.getViewById("rut-loginTextField");
+    const password:TextField = <TextField> this.page.getViewById("password-loginTextField");    
+  
+    if (rut.text.length > 0 && password.text.length > 0 && this.validateRut) {
+      console.log("setEnabled true")
       const btn = this.buttonIngresar.nativeElement;
       this.renderer.setAttribute(btn, "isEnabled", "true");
 
     } else {
+      console.log("setEnabled false",this.alterRut,this.passwordInput )
       const btn = this.buttonIngresar.nativeElement;
       this.renderer.setAttribute(btn, "isEnabled", "false");
     }
