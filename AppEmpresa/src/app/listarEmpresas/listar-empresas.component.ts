@@ -18,6 +18,9 @@ export class listarEmpresasComponent implements OnInit {
     description = "";
     searchPhrase: string;
 
+    public search:any;
+    public lupa = String.fromCharCode(0xf002);
+
     constructor(private _listaService: EmpresaService,private route: ActivatedRoute, private page: Page)
      {
 
@@ -39,8 +42,9 @@ export class listarEmpresasComponent implements OnInit {
     ngOnInit(): void {
         //Init Temporal Array to search
         this.page.actionBarHidden = true;
-
         this.tempEmpresas = this.arrayEmpresas;
+
+        this.search=this.lupa;
     }
 
     onSubmit(eventSearch) {

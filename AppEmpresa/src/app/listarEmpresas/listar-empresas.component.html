@@ -2,12 +2,28 @@
 
     <StackLayout orientation="vertical" class="header">
 
-        <StackLayout class="searchStack" orientation="horizontal">
+
+        <!-- <GridLayout columns="auto" rows="auto">
+            <TextField id="password-loginTextField" secure="true" #password hint="Contraseña *" class="input-pass" borderWidth="2" height="54" borderColor="#229EFF" borderRadius="19" [(ngModel)]="passwordInput" [ngStyle]="{'border-color': getColorPass()}" (tap)="onRutPipeAndValidation()"
+                row="0" colSpan="0"></TextField>
+            <Label [text]="showHideIcon" class="showhide fa fa-eye" (tap)="showHidePassword()" id="iconPassword-loginLabel" text="5" row="0" zIndex="1"></Label>
+        </GridLayout> -->
+
+        <GridLayout columns="auto" rows="auto">
+            <Label color="purple" [text]="search" class="img fa" ></Label>
+            <TextField id="search-CompanySearchBar" colSpan="0"  row="0" hint="Busca por nombre de la empresa" [text]="searchPhrase"
+                (textChange)="onTextChanged($event)" (clear)="onClear($event)" (submit)="onSubmit($event)">
+            </TextField>
+        </GridLayout>
+
+
+        <!-- <StackLayout class="searchStack" orientation="horizontal">
             <Image class="img" src="res://search"></Image>
             <TextField id="search-CompanySearchBar" hint="Busca por nombre de la empresa" [text]="searchPhrase"
                 (textChange)="onTextChanged($event)" (clear)="onClear($event)" (submit)="onSubmit($event)">
             </TextField>
-        </StackLayout>
+            <Label color="purple" [text]="search" class="img fa"></Label>
+        </StackLayout> -->
 
         <StackLayout class="titleStack" orientation="horizontal">
             <Label class="welcome" text="¡Bienvenido, "></Label>
@@ -26,5 +42,4 @@
             </GridLayout>
         </ng-template>
     </ListView>
-
 </StackLayout>
