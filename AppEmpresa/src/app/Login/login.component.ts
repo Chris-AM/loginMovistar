@@ -111,10 +111,11 @@ export class LoginComponent implements OnInit {
 
     if (user && password) {
 
-      this.isLoading = true;
+      // this.isLoading = true;
       let response = await this.loginService.postLoginP1(user, password);
-      console.log(response)
-      
+      console.log("respuesta");
+      console.log(response);
+      this.isLoading = true;
       if (response) {
 
         console.log("response from p3", response.access_token, response.rut)
@@ -127,6 +128,12 @@ export class LoginComponent implements OnInit {
 
         this.isLoading = false;
         console.log("user or password empty1");
+        
+        const rut = this.inputRut.nativeElement;
+        this.renderer.setStyle(rut, 'color', '#red');
+
+        const pass = this.passwordField.nativeElement;
+        this.renderer.setStyle(pass, 'color', '#red');
         //ponerse en rojo los textfield
       }
 
@@ -229,7 +236,7 @@ export class LoginComponent implements OnInit {
     const rut:TextField = <TextField> this.page.getViewById("rut-loginTextField");
     const password:TextField = <TextField> this.page.getViewById("password-loginTextField");    
   
-    if (rut.text.length > 0 && password.text.length > 0 && this.validateRut) {
+    if (rut.text.length > 0 && password.text.length > 0) {
       console.log("setEnabled true")
       const btn = this.buttonIngresar.nativeElement;
       this.renderer.setAttribute(btn, "isEnabled", "true");

@@ -15,19 +15,27 @@ export class LoginService {
     
     async postLoginP1(username:string, password:string){
 
-      
-        const url = `${this.url.url_base}`+`${this.url.login}`;        
+        console.log(username,password);
+        const url = `${this.url.url_base}`+`${this.url.login}`;
+        console.log(url);
+        //
         //const bodyData = `username=${'12752279-0'}&password=${'Titi2012'}`; //DEV
         const bodyData = `username=${username}&password=${password}`; //PROD     
-        
+        console.log(bodyData);
         const headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
         const params = new HttpParams().set('apikey', 'd01d4fb6-de04-4662-9aa9-7a3fa06cb5c6');
-        
         const responseP1 = await this.http.post<any>(url, bodyData , {'headers':headers, 'params': params }).toPromise();
+        console.log(responseP1.estado.codigoEstado);
         const codigoEstado = responseP1.estado.codigoEstado
         const act_token = responseP1.datos.act_token
+        console.log(codigoEstado);
 
-        if (codigoEstado === 200) {
+        
+        // if (codigoEstado === "130") {
+            
+        //     return responseP1;
+        // }  
+        if (codigoEstado === "200") {
             
             //authorization
             const url = `${this.url.url_base}`+`${this.url.authorization}`;
@@ -47,13 +55,12 @@ export class LoginService {
                 let redirect_uri = `${this.url.stepThreeKey}`
                 const bodyData = `client_id=${client_id}&client_secret=${client_secret}&code=${codeP2}&redirect_uri=${redirect_uri}&grant_type=${'authorization_code'}`;        
                 
-               return await this.http.post<any>(url, bodyData , {'headers':headers }).toPromise();
+                return await this.http.post<any>(url, bodyData , {'headers':headers }).toPromise();
              
             }
-        }   else {
 
-            return responseP1.estado
-        }  
-       
+        }else{
+            return responseP1;
+        }
     }
 }
