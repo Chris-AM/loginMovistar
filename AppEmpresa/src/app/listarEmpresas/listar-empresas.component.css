@@ -1,25 +1,47 @@
 .header{
-
     background: linear-gradient(180deg, #0C273A 0%, #011422 100%);
 }
 
-/*.header StackLayout{
+.searchStack{
+    padding: 16px;
+}
 
-}*/
-
-Image{
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    z-index: -1;
+.img{
+    width: 29dp;
+    height: 36dp;
+    margin: 48, 0, 0, 0;
+    background: #ffffff;
+    border-top-left-radius: 16dp;
+    border-bottom-left-radius: 16dp;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding-block-start: 2px;
   }
+
+    /*SearchBar*/
+  .header TextField {
+    placeholder-color: #B8B8B8;
+    font-size: 14;
+    height: 36;
+    width: 90%;
+    background: #ffffff;
+    margin: 48, 16, 0, 0;
+    border-top-right-radius: 16dp;
+    border-bottom-right-radius: 16dp;
+    padding-left: 16dp;
+}
+
+.header TextField::placeholder{
+    color: #0019A5;
+}
 
 .titleStack{
     horizontal-align: center;
 }
 
 .titleStack label{
-    margin-top: 16;
+    margin-top: 14;
     color: white;
     font-size: 22;
     text-align: center;
@@ -34,7 +56,6 @@ Image{
     font-weight: bold;
 }
 
-/*StackLayout StackLayout label+Label Label*/
 .choose{
     color: white;
     margin: 5, 0, 16, 0;
@@ -42,28 +63,5 @@ Image{
     text-align: center;
 }
 
-.header TextField {
-    placeholder-color: #B8B8B8;
-    font-size: 14;
-    height: 36;
-    background: white;
-    margin: 40, 16, 0, 16;
-    border-radius: 16;
-    padding-left: 20px;
-}
 
-.header TextField::placeholder{
-    color: #0019A5;
-}
-
-
-/* GridLayout Label {
-    margin-top: 16;
-    margin-left: 80;
-}
-
-GridLayout Label+Label {
-    margin-top: 0;
-    margin-bottom: 16;
-} */
 
