@@ -113,7 +113,8 @@ export class LoginComponent implements OnInit {
 
       this.isLoading = true;
       let response = await this.loginService.postLoginP1(user, password);
-
+      console.log(response)
+      
       if (response) {
 
         console.log("response from p3", response.access_token, response.rut)
@@ -126,7 +127,7 @@ export class LoginComponent implements OnInit {
 
         this.isLoading = false;
         console.log("user or password empty1");
-
+        //ponerse en rojo los textfield
       }
 
     } else {

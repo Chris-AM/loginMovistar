@@ -15,20 +15,19 @@ export class LoginService {
     
     async postLoginP1(username:string, password:string){
 
-        if(password != 'Titi2012'){
-            return false;
-        }
+      
         const url = `${this.url.url_base}`+`${this.url.login}`;        
-        const bodyData = `username=${'12752279-0'}&password=${'Titi2012'}`; //DEV
-        //const bodyData = `username=${username}&password=${password}`; //PROD     
+        //const bodyData = `username=${'12752279-0'}&password=${'Titi2012'}`; //DEV
+        const bodyData = `username=${username}&password=${password}`; //PROD     
         
         const headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
         const params = new HttpParams().set('apikey', 'd01d4fb6-de04-4662-9aa9-7a3fa06cb5c6');
         
         const responseP1 = await this.http.post<any>(url, bodyData , {'headers':headers, 'params': params }).toPromise();
+        const codigoEstado = responseP1.estado.codigoEstado
         const act_token = responseP1.datos.act_token
 
-        if (act_token) {
+        if (codigoEstado === 200) {
             
             //authorization
             const url = `${this.url.url_base}`+`${this.url.authorization}`;
@@ -51,7 +50,10 @@ export class LoginService {
                return await this.http.post<any>(url, bodyData , {'headers':headers }).toPromise();
              
             }
-        }     
+        }   else {
+
+            return responseP1.estado
+        }  
        
     }
 }
