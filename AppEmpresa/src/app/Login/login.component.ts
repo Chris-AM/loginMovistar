@@ -12,9 +12,12 @@ import { refactoringText } from '../shared/refactoringTexts';
   styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
-  @ViewChild("password") passwordField: ElementRef;  
-  @ViewChild("msjRutLb") msjRutLb: ElementRef; 
+  @ViewChild("password") passwordField: ElementRef;
+  @ViewChild("msjRutLb") msjRutLb: ElementRef;
   @ViewChild("msjPassLb") msjPassLb: ElementRef;
+  @ViewChild("buttonIngresar") buttonIngresar: ElementRef;
+
+
 
   isAuthenticating = false;
   verificationDigit: string | number;
@@ -27,11 +30,11 @@ export class LoginComponent implements OnInit {
   isLoading = false;
   setColor = false;
   welcome: string = '';
-  info:string = '';
+  info: string = '';
   passHint: string = '';
-  rememberPass:string = '';
-  passForgotten:string = '';
-  validateRut:boolean;
+  rememberPass: string = '';
+  passForgotten: string = '';
+  validateRut: boolean;
   private refText = new refactoringText();
 
   public hideIcon = String.fromCharCode(0xf070);
@@ -46,15 +49,16 @@ export class LoginComponent implements OnInit {
     private routerExtensions: RouterExtensions,
     public loginService: LoginService,
     private renderer: Renderer2,
-  
-  ) { 
-    
+
+  ) {
+
   }
 
   ngOnInit() {
 
+
     this.page.actionBarHidden = true;
-  
+
     this.mensajeRut = this.refText.text1;
     this.showHideIcon = this.hideIcon;
     this.welcome = this.refText.welcome;
@@ -109,27 +113,30 @@ export class LoginComponent implements OnInit {
 
       this.isLoading = true;
       let response = await this.loginService.postLoginP1(user, password);
-      
+
       if (response) {
-      
-        console.log("response from p3",response.access_token, response.rut)
-        let rut = response.rut + response.dv;        
+
+        console.log("response from p3", response.access_token, response.rut)
+        let rut = response.rut + response.dv;
         let access_token = response.access_token;
         this.isLoading = false;
-        this.route.navigate(["/listar-empresas",{rut:rut ,access_token:access_token}]);
+        this.route.navigate(["/listar-empresas", { rut: rut, access_token: access_token }]);
 
       } else {
-      
+
         this.isLoading = false;
         console.log("user or password empty1");
-      
+
       }
-      
+
     } else {
+
+
+
       this.isLoading = false;
       this.setColor = true;
       console.log("user or password empty2");
-    
+
     }
   }
 
@@ -143,25 +150,24 @@ export class LoginComponent implements OnInit {
     if (!this.alterRut && this.setColor) {
       return 'red'
     }
-    
+
   }
 
 
   onRutPipeAndValidation() {
-
     const label = this.msjPassLb.nativeElement;
     this.renderer.setStyle(label, 'color', '#008edd');
 
-    if(this.alterRut){
+    if (this.alterRut) {
       const cleanRut = this.cleanRut(this.alterRut);
       this.lastDigit = cleanRut.slice(-1);
       const partialRut = cleanRut.slice(0, cleanRut.length - 1);
 
-      if(this.isNumeric(partialRut)){
+      if (this.isNumeric(partialRut)) {
 
-        this.alterRut = `${this.pipeRut(cleanRut)}-${this.lastDigit}`;      
-        this.verificationDigit = this.calcDigitVer(partialRut);     
-     
+        this.alterRut = `${this.pipeRut(cleanRut)}-${this.lastDigit}`;
+        this.verificationDigit = this.calcDigitVer(partialRut);
+
         if (this.verificationDigit !== this.lastDigit) {
           //this.isVisible = true;
           console.log("rut no valido")
@@ -178,8 +184,10 @@ export class LoginComponent implements OnInit {
       }
     } else {
       //console.log("rut en blanco")
-      
+
     }
+    this.setEnabled();
+
 
   }
 
@@ -187,14 +195,15 @@ export class LoginComponent implements OnInit {
     return !isNaN(parseFloat(n)) && isFinite(n);
   }
 
-  tapRut(){
+  tapRut() {
+    this.setEnabled();
     console.log("tapRut")
     const label = this.msjRutLb.nativeElement;
     this.renderer.setStyle(label, 'color', '#008edd');
   }
 
-  outRut(){
-    if(this.validateRut){
+  outRut() {
+    if (this.validateRut) {
       console.log("blurRut")
       const label = this.msjRutLb.nativeElement;
       this.renderer.setStyle(label, 'color', '#50535a');
@@ -202,26 +211,40 @@ export class LoginComponent implements OnInit {
       const label = this.msjRutLb.nativeElement;
       this.renderer.setStyle(label, 'color', '#eb3434');
     }
-  }  
+    this.setEnabled();
 
-  outPass(){
-    
-      console.log("outPass")
-      const label = this.msjPassLb.nativeElement;
-      this.renderer.setStyle(label, 'color', '#50535a');
-  
-    
+  }
+
+  outPass() {
+    console.log("outPass")
+    const label = this.msjPassLb.nativeElement;
+    this.renderer.setStyle(label, 'color', '#50535a');
+    this.setEnabled();
+  }
+
+
+  setEnabled() {
+    console.log("setEnabled", this.validateRut && this.passwordInput)
+    if (this.alterRut && this.passwordInput) {
+      const btn = this.buttonIngresar.nativeElement;
+      this.renderer.setAttribute(btn, "isEnabled", "true");
+
+    } else {
+      const btn = this.buttonIngresar.nativeElement;
+      this.renderer.setAttribute(btn, "isEnabled", "false");
+    }
+
   }
 }
-  
-
-  
 
 
-  
 
-  
-   
+
+
+
+
+
+
 
 
 

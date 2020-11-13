@@ -8,13 +8,14 @@
         </StackLayout>
         <StackLayout class="input-field position">
             <GridLayout columns="auto" rows="auto">
-                <TextField row="0" id="rut-loginTextField" hint="Rut *" class="input mb-0" #textField borderWidth="2" height="54" borderColor="#008edd" borderRadius="19" [(ngModel)]="alterRut" [ngStyle]="{'border-color': getColorUser()}" (tap)="tapRut()" (blur)="outRut()"></TextField>
+                <TextField row="0" id="rut-loginTextField" hint="Rut *" class="input mb-0" #textField borderWidth="2" height="54" borderColor="#008edd" borderRadius="19" [(ngModel)]="alterRut" (textChange)="setEnabled()" (returnPress)="setEnabled()" [ngStyle]="{'border-color': getColorUser()}"
+                    (tap)="tapRut()" (blur)="outRut()"></TextField>
             </GridLayout>
             <Label #msjRutLb id="validateRut-loginLabel" class="left mb-4" text="{{ mensajeRut }}"></Label>
 
             <GridLayout columns="auto" rows="auto">
-                <TextField id="password-loginTextField" secure="true" #password hint="Contraseña *" class="input-pass mb-0" borderWidth="2" height="54" borderColor="#008edd" borderRadius="19" [(ngModel)]="passwordInput" [ngStyle]="{'border-color': getColorPass()}" (tap)="onRutPipeAndValidation()"
-                    (blur)="outPass()" row="0" colSpan="0"></TextField>
+                <TextField id="password-loginTextField" secure="true" #password hint="Contraseña *" class="input-pass mb-0" borderWidth="2" height="54" borderColor="#008edd" borderRadius="19" (textChange)="setEnabled()" (returnPress)="setEnabled()" [(ngModel)]="passwordInput"
+                    [ngStyle]="{'border-color': getColorPass()}" (tap)="onRutPipeAndValidation()" (blur)="outPass()" row="0" colSpan="0"></TextField>
                 <Label [text]="showHideIcon" class="showhide fa fa-eye" (tap)="showHidePassword()" id="iconPassword-loginLabel" text="5" row="0" zIndex="1"></Label>
             </GridLayout>
 
@@ -26,7 +27,7 @@
             </GridLayout>
 
             <GridLayout rows="auto,auto" columns="auto">
-                <Button row="0" col="0" id="logIn-loginButton" class="btnProperties" (tap)="onList()" text="Ingresar"></Button>
+                <Button #buttonIngresar row="0" col="0" isEnabled="false" id="logIn-loginButton" class="btnProperties" (tap)="onList()" text="Ingresar"></Button>
                 <Label row="1" col="0" id="forgetPassword-loginLabel" class="center" text="{{ passForgotten }}"></Label>
             </GridLayout>
         </StackLayout>
