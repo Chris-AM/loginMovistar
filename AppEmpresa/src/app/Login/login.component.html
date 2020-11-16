@@ -7,13 +7,8 @@
         </StackLayout>
         <StackLayout class="input-field position">
             <GridLayout columns="auto" rows="auto">
-<<<<<<< HEAD
-                <TextField row="0" id="rut-loginTextField" hint="Rut *" class="input" #textField borderWidth="2" height="54" borderColor="#229EFF" borderRadius="19" [(ngModel)]="alterRut" [ngStyle]="{'border-color': getColorUser()}"></TextField>
-
-=======
                 <TextField #inputRut row="0" id="rut-loginTextField" hint="Rut *" class="input mb-0" borderWidth="2" height="54" borderColor="#008edd" borderRadius="19" [(ngModel)]="alterRut" (textChange)="setEnabled()" (returnPress)="setEnabled()" [ngStyle]="{'border-color': getColorUser()}"
                     (tap)="tapRut()" (blur)="outRut()"></TextField>
->>>>>>> fix/login
             </GridLayout>
             <Label #msjRutLb id="validateRut-loginLabel" class="left mb-1" text="{{ mensajeRut }}"></Label>
             <ActivityIndicator id="loading-loginSpin" class="loginSpin" [busy]="isLoading" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>

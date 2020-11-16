@@ -20,15 +20,11 @@
     placeholder-color: #B8B8B8;
     font-size: 15;
     width: 90%;
-<<<<<<< HEAD
-    padding-left: 20;
-=======
     padding-left: 15;
     /*margin-bottom: 40;*/
 }
 
 .mb-4 {
->>>>>>> fix/login
     margin-bottom: 40;
 }
 
@@ -95,11 +91,7 @@
 .input-pass {
     placeholder-color: #B8B8B8;
     width: 90%;
-<<<<<<< HEAD
-    padding-left: 20;
-=======
     padding-left: 15;
->>>>>>> fix/login
     /* margin-bottom: 5;*/
 }
 

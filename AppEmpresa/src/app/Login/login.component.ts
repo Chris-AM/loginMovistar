@@ -14,17 +14,13 @@ import { refactoringText } from '../shared/refactoringTexts';
 export class LoginComponent implements OnInit {
 
   @ViewChild("password") passwordField: ElementRef;
-<<<<<<< HEAD
-
-=======
   @ViewChild("msjRutLb") msjRutLb: ElementRef;
   @ViewChild("msjPassLb") msjPassLb: ElementRef;
   @ViewChild("buttonIngresar") buttonIngresar: ElementRef;
   @ViewChild("inputRut") inputRut: ElementRef;
   @ViewChild("formLogin") formLogin: ElementRef;
 
-  
->>>>>>> fix/login
+
   isAuthenticating = false;
   verificationDigit: string | number;
   data?: string | number;
@@ -40,11 +36,7 @@ export class LoginComponent implements OnInit {
   passHint: string = '';
   rememberPass: string = '';
   passForgotten: string = '';
-<<<<<<< HEAD
-
-=======
   validateRut: boolean;
->>>>>>> fix/login
   private refText = new refactoringText();
 
   public hideIcon = String.fromCharCode(0xf070);
@@ -66,14 +58,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
-<<<<<<< HEAD
-    this.page.actionBarHidden = true;
 
-=======
 
-  
     this.page.actionBarHidden = true;
->>>>>>> fix/login
 
     this.mensajeRut = this.refText.text1;
     this.showHideIcon = this.hideIcon;
@@ -133,12 +120,9 @@ export class LoginComponent implements OnInit {
       this.renderer.setStyle(form, 'opacity', '0.5');
 
       let response = await this.loginService.postLoginP1(user, password);
-<<<<<<< HEAD
-=======
       console.log("respuesta");
       console.log(response);
-     
->>>>>>> fix/login
+
 
       if (response) {
 
@@ -146,46 +130,33 @@ export class LoginComponent implements OnInit {
         let rut = response.rut + response.dv;
         let access_token = response.access_token;
         this.isLoading = false;
-<<<<<<< HEAD
-=======
 
         const form = this.formLogin.nativeElement;
         this.renderer.setStyle(form, 'opacity', '1');
         this.renderer.setAttribute(form, "isEnabled", "true");
 
->>>>>>> fix/login
         this.route.navigate(["/listar-empresas", { rut: rut, access_token: access_token }]);
 
       } else {
 
         this.isLoading = false;
-<<<<<<< HEAD
-        console.log("user or password empty");
-
-=======
         console.log("user or password empty1");
-        
+
         const rut = this.inputRut.nativeElement;
         this.renderer.setStyle(rut, 'color', '#red');
 
         const pass = this.passwordField.nativeElement;
         this.renderer.setStyle(pass, 'color', '#red');
         //ponerse en rojo los textfield
->>>>>>> fix/login
       }
 
     } else {
 
-<<<<<<< HEAD
-      this.setColor = true;
-      console.log("user or password empty");
-=======
 
 
       this.isLoading = false;
       this.setColor = true;
       console.log("user or password empty2");
->>>>>>> fix/login
 
     }
   }
@@ -244,10 +215,6 @@ export class LoginComponent implements OnInit {
   isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
   }
-<<<<<<< HEAD
-}
-
-=======
 
   tapRut() {
     this.setEnabled();
@@ -267,14 +234,9 @@ export class LoginComponent implements OnInit {
       this.renderer.setStyle(label, 'color', '#eb3434');
     }
     this.setEnabled();
->>>>>>> fix/login
 
   }
 
-<<<<<<< HEAD
-
-
-=======
   outPass() {
     console.log("outPass")
     const label = this.msjPassLb.nativeElement;
@@ -286,8 +248,8 @@ export class LoginComponent implements OnInit {
   setEnabled() {
 
     const rut:TextField = <TextField> this.page.getViewById("rut-loginTextField");
-    const password:TextField = <TextField> this.page.getViewById("password-loginTextField");    
-  
+    const password:TextField = <TextField> this.page.getViewById("password-loginTextField");
+
     if (rut.text.length > 0 && password.text.length > 0) {
       console.log("setEnabled true")
       const btn = this.buttonIngresar.nativeElement;
@@ -306,7 +268,6 @@ export class LoginComponent implements OnInit {
 
 
 
->>>>>>> fix/login
 
 
 
