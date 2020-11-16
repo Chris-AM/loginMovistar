@@ -1,7 +1,13 @@
 @import '~@nativescript/theme/css/core.css';
 @import '~@nativescript/theme/css/default.css';
+
+.main{
+    margin-top: 0;
+    padding: 0;
+}
 .header {
     margin-top: 40;
+    margin: 0;
     background: linear-gradient(180deg, #0C273A 0%, #011422 100%);
     filter: drop-shadow(80px 90px 10px #4444dd);
 }
@@ -91,4 +97,10 @@ GridLayout Label+Label {
 /* TO DO */
 .ancho {
     width: 270;
+}
+.choose{
+    color: white;
+    margin: 5, 0, 16, 0;
+    font-size: 14px !important;
+    text-align: center;
 }
