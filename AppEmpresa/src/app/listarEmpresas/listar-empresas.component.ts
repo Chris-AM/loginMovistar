@@ -26,6 +26,8 @@ export class listarEmpresasComponent implements OnInit {
     ) {
         let rut = this.route.snapshot.params.rut;
         let access_token = this.route.snapshot.params.access_token;
+        let name = this.route.snapshot.params.name;
+        let lastName = this.route.snapshot.params.lastName;
 
         //Get list companies
         this._listaService.getEmpresas(rut, access_token).subscribe((data) => {

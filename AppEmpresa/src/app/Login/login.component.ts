@@ -42,15 +42,15 @@ export class LoginComponent implements OnInit {
     private routerExtensions: RouterExtensions,
     public loginService: LoginService,
     private renderer: Renderer2,
-  
-  ) { 
-    
+
+  ) {
+
   }
 
   ngOnInit() {
 
     this.page.actionBarHidden = true;
-  
+
 
     this.showHideIcon = this.hideIcon;
     this.welcome = this.refText.welcome;
@@ -105,27 +105,27 @@ export class LoginComponent implements OnInit {
 
       this.isLoading = true;
       let response = await this.loginService.postLoginP1(user, password);
-      
+
       if (response) {
-      
+
         console.log("response from p3",response.access_token, response.rut)
-        let rut = response.rut + response.dv;        
+        let rut = response.rut + response.dv;
         let access_token = response.access_token;
         this.isLoading = false;
-        this.route.navigate(["/listar-empresas",{rut:rut ,access_token:access_token}]);
+        this.route.navigate(["/listar-empresas",{rut:rut ,access_token:access_token, name: response.responseBknd.token.cliente.nombre, lastName: response.responseBknd.token.cliente.apellido_paterno}]);
 
       } else {
-      
+
         this.isLoading = false;
         console.log("user or password empty");
-      
+
       }
-      
+
     } else {
-      
+
       this.setColor = true;
       console.log("user or password empty");
-    
+
     }
   }
 
@@ -139,7 +139,7 @@ export class LoginComponent implements OnInit {
     if (!this.alterRut && this.setColor) {
       return 'red'
     }
-    
+
   }
 
 
@@ -152,9 +152,9 @@ export class LoginComponent implements OnInit {
 
       if(this.isNumeric(partialRut)){
 
-        this.alterRut = `${this.pipeRut(cleanRut)}-${this.lastDigit}`;      
-        this.verificationDigit = this.calcDigitVer(partialRut);     
-     
+        this.alterRut = `${this.pipeRut(cleanRut)}-${this.lastDigit}`;
+        this.verificationDigit = this.calcDigitVer(partialRut);
+
         if (this.verificationDigit !== this.lastDigit) {
           this.isVisible = true;
           this.mensajeRut = 'El Rut ingresado es incorrecto.';
@@ -173,15 +173,15 @@ export class LoginComponent implements OnInit {
     return !isNaN(parseFloat(n)) && isFinite(n);
   }
 }
-  
-
-  
 
 
-  
 
-  
-   
+
+
+
+
+
+
 
 
 
