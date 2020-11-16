@@ -1,10 +1,10 @@
 @import '~@nativescript/theme/css/core.css';
 @import '~@nativescript/theme/css/default.css';
-
-.main{
+.main {
     margin-top: 0;
     padding: 0;
 }
+
 .header {
     margin-top: 40;
     margin: 0;
@@ -12,11 +12,11 @@
     filter: drop-shadow(80px 90px 10px #4444dd);
 }
 
-.searchStack{
+.searchStack {
     padding: 16px;
 }
 
-.img{
+.img {
     font-size: 20;
     margin-top: 48;
     margin-left: 18;
@@ -24,10 +24,12 @@
     /* padding-top: 6; */
     text-align: left;
     z-index: 1;
-  }
+}
 
-    /*SearchBar*/
-  .header TextField {
+
+/*SearchBar*/
+
+.header TextField {
     placeholder-color: #B8B8B8;
     width: 90%;
     padding-left: 30;
@@ -38,15 +40,16 @@
     height: 36;
 }
 
+
 /*.header TextField::placeholder{
     color: #0019A5;
 }*/
 
-.titleStack{
+.titleStack {
     horizontal-align: center;
 }
 
-.titleStack label{
+.titleStack label {
     margin-top: 14;
     color: white;
     font-size: 22;
@@ -72,7 +75,6 @@
     clip-path: polygon(100% 23%, 96% 18%, 94% 15%, 89% 10%, 84% 6%, 79% 3%, 73% 0%, 0% 0%, 0% 100%, 100% 100%);
 }
 
-
 GridLayout Label+Label {
     margin-top: 0;
     margin-bottom: 16;
@@ -88,17 +90,22 @@ GridLayout Label+Label {
 .telfRegular {
     color: #50535a;
     font-size: 16dp;
+    white-space: normal;
 }
 
 .telfLight {
     color: #50535a;
     font-size: 14dp;
 }
+
+
 /* TO DO */
+
 .ancho {
     width: 270;
 }
-.choose{
+
+.choose {
     color: white;
     margin: 5, 0, 16, 0;
     font-size: 14px !important;

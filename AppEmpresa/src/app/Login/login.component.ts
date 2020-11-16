@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
   setColor = false;
   welcome: string = '';
   info: string = '';
-  passHint: string = '';
+  mensajePass: string = '';
   rememberPass: string = '';
   passForgotten: string = '';
   validateRut: boolean;
@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
     this.showHideIcon = this.hideIcon;
     this.welcome = this.refText.welcome;
     this.info = this.refText.info;
-    this.passHint = this.refText.text2;
+    this.mensajePass = this.refText.text2;
     this.rememberPass = this.refText.rememberPass;
     this.passForgotten = this.refText.passForgotten;
   }
@@ -125,12 +125,13 @@ export class LoginComponent implements OnInit {
 
       let response = await this.loginService.postLoginP1(user, password);
       console.log("--->", response)
+
       if (response.estado === false) {
+
         const spin = this.loginSpin.nativeElement;
         this.renderer.setAttribute(spin, 'busy', 'false');
         const form = this.formLogin.nativeElement;
         this.renderer.setStyle(form, 'opacity', '1');
-        console.log("user or password empty1");
 
         const rut = this.inputRut.nativeElement;
         this.renderer.setStyle(rut, 'border-color', '#eb3434');
@@ -138,41 +139,27 @@ export class LoginComponent implements OnInit {
         const pass = this.passwordField.nativeElement;
         this.renderer.setStyle(pass, 'border-color', '#eb3434');
         
-        this.mensajeRut = this.refText.textError;
-        this.passHint = this.refText.textError;
-        console.log(this.refText.textError);
-        const lbrut = this.msjRutLb.nativeElement;
-        this.renderer.setStyle(lbrut, 'color', '#eb3434');
-        
-        const lbpass = this.msjPassLb.nativeElement;
-        this.renderer.setStyle(lbpass, 'color', '#eb3434');
+        const msjRut = this.msjRutLb.nativeElement;   
+        const msjPass = this.msjPassLb.nativeElement;   
+     
+        msjRut.text = this.refText.textError;        
+        msjPass.text = this.refText.textError;        
+        this.renderer.setStyle(msjRut, 'color', '#eb3434');        
+        this.renderer.setStyle(msjPass, 'color', '#eb3434');
 
       } else {
-        console.log("response from p3", response.access_token, response.rut)
+
         let rut = response.rut + response.dv;
         let access_token = response.access_token;
 
         this.route.navigate(["/listar-empresas", { rut: rut, access_token: access_token, name: response.responseBknd.token.cliente.nombre, lastName: response.responseBknd.token.cliente.apellido_paterno }]);
 
       }
-      // console.log(response," L136 respuesta false")
-      // if(response.estado === false) {
-
-      //   this.isLoading = false;
-      //   console.log("user or password empty1");
-
-      //   const rut = this.inputRut.nativeElement;
-      //   this.renderer.setStyle(rut, 'border-color', '#eb3434');
-
-      //   const pass = this.passwordField.nativeElement;
-      //   this.renderer.setStyle(pass, 'border-color', '#eb3434');
-      //   //ponerse en rojo los textfield
-      // }
+      
 
     } else {
       
       this.setColor = true;
-      console.log("user or password empty2");
 
     }
   }
