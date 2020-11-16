@@ -1,14 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { EmpresaService } from "./empresa.service";
 import { ItemEventData, SearchBar, Page } from "@nativescript/core";
-import { ActivatedRoute, Params } from '@angular/router';
-
+import { ActivatedRoute, Params } from "@angular/router";
 
 @Component({
     moduleId: module.id,
     templateUrl: "./listar-empresas.component.html",
     styleUrls: ["./listar-empresas.component.css"],
-
 })
 export class listarEmpresasComponent implements OnInit {
     tempEmpresas = [];
@@ -17,30 +15,36 @@ export class listarEmpresasComponent implements OnInit {
 
     description = "";
     searchPhrase: string;
+    name = "";
+    lastName = "";
 
-    constructor(private _listaService: EmpresaService,private route: ActivatedRoute, private page: Page)
-     {
+    public search: any;
+    public lupa = String.fromCharCode(0xf002);
 
+    constructor(
+        private _listaService: EmpresaService,
+        private route: ActivatedRoute,
+        private page: Page
+    ) {
         let rut = this.route.snapshot.params.rut;
         let access_token = this.route.snapshot.params.access_token;
+        this.name = this.route.snapshot.params.name;
+        this.lastName = this.route.snapshot.params.lastName;
 
         //Get list companies
         this._listaService.getEmpresas(rut, access_token).subscribe((data) => {
-
             for (let item of data.Customer) {
-                this.arrayEmpresas.push(
-                    item
-                );
+                this.arrayEmpresas.push(item);
             }
         });
-
     }
 
     ngOnInit(): void {
         //Init Temporal Array to search
         this.page.actionBarHidden = true;
-
         this.tempEmpresas = this.arrayEmpresas;
+
+        this.search = this.lupa;
     }
 
     onSubmit(eventSearch) {
@@ -52,13 +56,19 @@ export class listarEmpresasComponent implements OnInit {
         const searchBar = eventSearch.object as SearchBar;
         this.description = searchBar.text;
 
-        const valuesFiltered = this.arrayEmpresas.filter((data) =>
-            data.customerName.includes(this.description)
-        ); //filter list with text of searchbar
+        this.description = this.description.toUpperCase();
 
-        console.log(`Valor Input! value: ${searchBar.text}`);
+        if (this.description === "") {
+            this.arrayEmpresas = this.tempEmpresas;
+        } else {
+            const valuesFiltered = this.arrayEmpresas.filter((data) =>
+                data.customerName.includes(this.description)
+            ); //filter list with text of searchbar
 
-        this.arrayEmpresas = valuesFiltered; //upload list
+            console.log(`Valor Input! value: ${searchBar.text}`);
+
+            this.arrayEmpresas = valuesFiltered; //upload list
+        }
     }
 
     onClear(eventSearch) {

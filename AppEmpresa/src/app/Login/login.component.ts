@@ -120,22 +120,14 @@ export class LoginComponent implements OnInit {
       this.renderer.setStyle(form, 'opacity', '0.5');
 
       let response = await this.loginService.postLoginP1(user, password);
-      console.log("respuesta");
-      console.log(response);
-
 
       if (response) {
 
-        console.log("response from p3", response.access_token, response.rut)
+        console.log("response from p3",response.access_token, response.rut)
         let rut = response.rut + response.dv;
         let access_token = response.access_token;
         this.isLoading = false;
-
-        const form = this.formLogin.nativeElement;
-        this.renderer.setStyle(form, 'opacity', '1');
-        this.renderer.setAttribute(form, "isEnabled", "true");
-
-        this.route.navigate(["/listar-empresas", { rut: rut, access_token: access_token }]);
+        this.route.navigate(["/listar-empresas",{rut:rut ,access_token:access_token, name: response.responseBknd.token.cliente.nombre, lastName: response.responseBknd.token.cliente.apellido_paterno}]);
 
       } else {
 
