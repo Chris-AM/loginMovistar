@@ -36,11 +36,13 @@ export class LoginComponent implements OnInit {
   passForgotten: string = '';
   validateRut: boolean;
   private refText = new refactoringText();
-
+  public lupa = String.fromCharCode(0xf002);
   public hideIcon = String.fromCharCode(0xf070);
   public showIcon = String.fromCharCode(0xf06e);
   public showHideIcon: any;
+  public search:any;
   private showPassword = false;
+  
   //public isVisible: boolean = false;
 
   constructor(
@@ -58,7 +60,6 @@ export class LoginComponent implements OnInit {
 
 
     this.page.actionBarHidden = true;
-
     this.mensajeRut = this.refText.text1;
     this.showHideIcon = this.hideIcon;
     this.welcome = this.refText.welcome;
@@ -110,14 +111,11 @@ export class LoginComponent implements OnInit {
     let user = this.alterRut;
 
     if (user && password) {
-
-      // this.isLoading = true;
       let response = await this.loginService.postLoginP1(user, password);
       console.log("respuesta");
       console.log(response);
-      this.isLoading = true;
-      if (response) {
-
+      if (response.estado) {
+        this.isLoading = true;
         console.log("response from p3", response.access_token, response.rut)
         let rut = response.rut + response.dv;
         let access_token = response.access_token;
@@ -125,28 +123,25 @@ export class LoginComponent implements OnInit {
         this.route.navigate(["/listar-empresas", { rut: rut, access_token: access_token }]);
 
       } else {
-
-        this.isLoading = false;
         console.log("user or password empty1");
-        
         const rut = this.inputRut.nativeElement;
-        this.renderer.setStyle(rut, 'color', '#red');
-
+        this.renderer.setStyle(rut, 'border-color', '#eb3434');
         const pass = this.passwordField.nativeElement;
-        this.renderer.setStyle(pass, 'color', '#red');
+        this.renderer.setStyle(pass, 'border-color', '#eb3434');
         //ponerse en rojo los textfield
       }
 
-    } else {
+    // } else {
 
 
 
-      this.isLoading = false;
-      this.setColor = true;
-      console.log("user or password empty2");
+    //   this.isLoading = false;
+    //   this.setColor = true;
+    //   console.log("user or password empty2");
 
-    }
+    // }
   }
+}
 
   getColorPass() {
     if (!this.passwordInput && this.setColor) {
