@@ -7,10 +7,11 @@
 }
 
 .img{
-
     font-size: 20;
     margin-top: 48;
     margin-left: 18;
+    padding-left: 2;
+    padding-top: 6;
     z-index: 1;
   }
 
@@ -20,13 +21,15 @@
     width: 90%;
     padding-left: 30;
     margin-top: 48;
+    margin-left: 16;
     background: #ffffff;
     border-radius: 16;
+    height: 36;
 }
 
-.header TextField::placeholder{
+/*.header TextField::placeholder{
     color: #0019A5;
-}
+}*/
 
 .titleStack{
     horizontal-align: center;
