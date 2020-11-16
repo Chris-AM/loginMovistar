@@ -100,8 +100,17 @@ export class LoginComponent implements OnInit {
         (acc, curr, index) => acc + Number(curr) * ((index % 6) + 2),
         0,
       );
-    const digit = 11 - (sum % 11);
+    
+    console.log("l.105 sum", sum)
+    let digit = 11 - (sum % 11);
+    
+    console.log("l.108 digit", digit)
+    if(digit == 11){
+      digit = 0;
+    }
     const verificationDigit = digit === 10 ? "k" : String(digit);
+
+    console.log("l.110 verificationDigit", verificationDigit)
     return verificationDigit;
   }
 
@@ -109,21 +118,28 @@ export class LoginComponent implements OnInit {
 
     let password = this.passwordInput;
     let user = this.alterRut;
+    this.isLoading = true;
 
+    console.log("l.123 user ", user)
     if (user && password) {
       let response = await this.loginService.postLoginP1(user, password);
-      console.log("respuesta");
-      console.log(response);
-      if (response.estado) {
-        this.isLoading = true;
+
+      console.log("respuesta",response);
+
+      if (response.estado) {       
+      
         console.log("response from p3", response.access_token, response.rut)
+       
+
         let rut = response.rut + response.dv;
         let access_token = response.access_token;
         this.isLoading = false;
         this.route.navigate(["/listar-empresas", { rut: rut, access_token: access_token }]);
 
       } else {
-        console.log("user or password empty1");
+
+        this.isLoading = false;
+
         const rut = this.inputRut.nativeElement;
         this.renderer.setStyle(rut, 'border-color', '#eb3434');
         const pass = this.passwordField.nativeElement;
@@ -131,15 +147,6 @@ export class LoginComponent implements OnInit {
         //ponerse en rojo los textfield
       }
 
-    // } else {
-
-
-
-    //   this.isLoading = false;
-    //   this.setColor = true;
-    //   console.log("user or password empty2");
-
-    // }
   }
 }
 
@@ -170,7 +177,7 @@ export class LoginComponent implements OnInit {
 
         this.alterRut = `${this.pipeRut(cleanRut)}-${this.lastDigit}`;
         this.verificationDigit = this.calcDigitVer(partialRut);
-
+        console.log("l.169", this.verificationDigit,this.lastDigit)
         if (this.verificationDigit !== this.lastDigit) {
           //this.isVisible = true;
           console.log("rut no valido")
