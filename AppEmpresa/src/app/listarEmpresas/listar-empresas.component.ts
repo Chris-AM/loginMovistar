@@ -15,6 +15,8 @@ export class listarEmpresasComponent implements OnInit {
 
     description = "";
     searchPhrase: string;
+    name = "";
+    lastName = "";
 
     public search: any;
     public lupa = String.fromCharCode(0xf002);
@@ -26,8 +28,8 @@ export class listarEmpresasComponent implements OnInit {
     ) {
         let rut = this.route.snapshot.params.rut;
         let access_token = this.route.snapshot.params.access_token;
-        let name = this.route.snapshot.params.name;
-        let lastName = this.route.snapshot.params.lastName;
+        this.name = this.route.snapshot.params.name;
+        this.lastName = this.route.snapshot.params.lastName;
 
         //Get list companies
         this._listaService.getEmpresas(rut, access_token).subscribe((data) => {
