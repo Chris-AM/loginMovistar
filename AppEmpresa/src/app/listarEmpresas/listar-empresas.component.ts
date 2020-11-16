@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { EmpresaService } from "./empresa.service";
 import { ItemEventData, SearchBar, Page } from "@nativescript/core";
 import { ActivatedRoute, Params } from "@angular/router";
+import { RouterExtensions } from "@nativescript/angular";
 
 @Component({
     moduleId: module.id,
@@ -24,8 +25,10 @@ export class listarEmpresasComponent implements OnInit {
     constructor(
         private _listaService: EmpresaService,
         private route: ActivatedRoute,
-        private page: Page
+        private page: Page,
+        private nav: RouterExtensions
     ) {
+        this.nav.navigate(['login.component'], { clearHistory: true });
         let rut = this.route.snapshot.params.rut;
         let access_token = this.route.snapshot.params.access_token;
         this.name = this.route.snapshot.params.name;
