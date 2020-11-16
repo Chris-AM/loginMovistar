@@ -11,7 +11,7 @@
                     (tap)="tapRut()" (blur)="outRut()"></TextField>
             </GridLayout>
             <Label #msjRutLb id="validateRut-loginLabel" class="left mb-1" text="{{ mensajeRut }}"></Label>
-            <ActivityIndicator id="loading-loginSpin" class="loginSpin" [busy]="isLoading" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
+            <ActivityIndicator #loginSpin id="loading-loginSpin" [busy]="isLoading" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
 
             <GridLayout columns="auto" rows="auto">
                 <TextField id="password-loginTextField" secure="true" #password hint="Contraseña *" class="input-pass mb-0" borderWidth="2" height="54" borderColor="#008edd" borderRadius="19" (textChange)="setEnabled()" (returnPress)="setEnabled()" [(ngModel)]="passwordInput"
