@@ -107,7 +107,15 @@ export class LoginComponent implements OnInit {
     if (user && password) {
 
       this.isLoading = true;
-      let response = await this.loginService.postLoginP1(user, password);
+      //let response = await this.loginService.postLoginP1(user, password);
+
+      let response = await this.loginService.postLoginP1(user, password).toPromise().then((response: any) => {
+        if (response.estado) {
+          
+        } else {
+          
+        }
+      });
 
       if (response) {
 
