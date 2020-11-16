@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
-
+    this.page.backgroundImage = "res://background_light";
 
     this.page.actionBarHidden = true;
 
