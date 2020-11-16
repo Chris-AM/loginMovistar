@@ -12,11 +12,23 @@
     margin-bottom: 70;
 }
 
+.backgroundSpinner {
+    background-image: url("res://bg-dark-l");
+}
+
 .input {
     placeholder-color: #B8B8B8;
     font-size: 15;
     width: 90%;
+<<<<<<< HEAD
     padding-left: 20;
+=======
+    padding-left: 15;
+    /*margin-bottom: 40;*/
+}
+
+.mb-4 {
+>>>>>>> fix/login
     margin-bottom: 40;
 }
 
@@ -35,6 +47,23 @@
     text-overflow: ellipsis;
     overflow: hidden;
     text-align: center;
+}
+
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.mb-1 {
+    margin-bottom: 5;
+}
+
+.left {
+    display: block;
+    white-space: normal;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: left;
+    margin-left: 30;
 }
 
 .login-label2 {
@@ -66,7 +95,11 @@
 .input-pass {
     placeholder-color: #B8B8B8;
     width: 90%;
+<<<<<<< HEAD
     padding-left: 20;
+=======
+    padding-left: 15;
+>>>>>>> fix/login
     /* margin-bottom: 5;*/
 }
 
@@ -76,12 +109,13 @@
     margin-bottom: 18;
 }
 
-.msjpass-label {
-    text-align: center;
-    color: #50535a;
-    /* margin-bottom: 20;*/
-}
-
 .labelrecordar {
     margin-top: 17vh;
 }
+
+
+/*
+.loginSpin {
+    z-index: 1;
+    margin-top: 50%;
+}*/

@@ -14,7 +14,17 @@ import { refactoringText } from '../shared/refactoringTexts';
 export class LoginComponent implements OnInit {
 
   @ViewChild("password") passwordField: ElementRef;
+<<<<<<< HEAD
 
+=======
+  @ViewChild("msjRutLb") msjRutLb: ElementRef;
+  @ViewChild("msjPassLb") msjPassLb: ElementRef;
+  @ViewChild("buttonIngresar") buttonIngresar: ElementRef;
+  @ViewChild("inputRut") inputRut: ElementRef;
+  @ViewChild("formLogin") formLogin: ElementRef;
+
+  
+>>>>>>> fix/login
   isAuthenticating = false;
   verificationDigit: string | number;
   data?: string | number;
@@ -30,14 +40,18 @@ export class LoginComponent implements OnInit {
   passHint: string = '';
   rememberPass: string = '';
   passForgotten: string = '';
+<<<<<<< HEAD
 
+=======
+  validateRut: boolean;
+>>>>>>> fix/login
   private refText = new refactoringText();
 
   public hideIcon = String.fromCharCode(0xf070);
   public showIcon = String.fromCharCode(0xf06e);
   public showHideIcon: any;
   private showPassword = false;
-  public isVisible: boolean = false;
+  //public isVisible: boolean = false;
 
   constructor(
     private route: Router,
@@ -52,13 +66,20 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
+<<<<<<< HEAD
     this.page.actionBarHidden = true;
 
+=======
 
+  
+    this.page.actionBarHidden = true;
+>>>>>>> fix/login
+
+    this.mensajeRut = this.refText.text1;
     this.showHideIcon = this.hideIcon;
     this.welcome = this.refText.welcome;
     this.info = this.refText.info;
-    this.passHint = this.refText.passHint;
+    this.passHint = this.refText.text2;
     this.rememberPass = this.refText.rememberPass;
     this.passForgotten = this.refText.passForgotten;
   }
@@ -107,7 +128,17 @@ export class LoginComponent implements OnInit {
     if (user && password) {
 
       this.isLoading = true;
+
+      const form = this.formLogin.nativeElement;
+      this.renderer.setStyle(form, 'opacity', '0.5');
+
       let response = await this.loginService.postLoginP1(user, password);
+<<<<<<< HEAD
+=======
+      console.log("respuesta");
+      console.log(response);
+     
+>>>>>>> fix/login
 
       if (response) {
 
@@ -115,19 +146,46 @@ export class LoginComponent implements OnInit {
         let rut = response.rut + response.dv;
         let access_token = response.access_token;
         this.isLoading = false;
+<<<<<<< HEAD
+=======
+
+        const form = this.formLogin.nativeElement;
+        this.renderer.setStyle(form, 'opacity', '1');
+        this.renderer.setAttribute(form, "isEnabled", "true");
+
+>>>>>>> fix/login
         this.route.navigate(["/listar-empresas", { rut: rut, access_token: access_token }]);
 
       } else {
 
         this.isLoading = false;
+<<<<<<< HEAD
         console.log("user or password empty");
 
+=======
+        console.log("user or password empty1");
+        
+        const rut = this.inputRut.nativeElement;
+        this.renderer.setStyle(rut, 'color', '#red');
+
+        const pass = this.passwordField.nativeElement;
+        this.renderer.setStyle(pass, 'color', '#red');
+        //ponerse en rojo los textfield
+>>>>>>> fix/login
       }
 
     } else {
 
+<<<<<<< HEAD
       this.setColor = true;
       console.log("user or password empty");
+=======
+
+
+      this.isLoading = false;
+      this.setColor = true;
+      console.log("user or password empty2");
+>>>>>>> fix/login
 
     }
   }
@@ -147,6 +205,8 @@ export class LoginComponent implements OnInit {
 
 
   onRutPipeAndValidation() {
+    const label = this.msjPassLb.nativeElement;
+    this.renderer.setStyle(label, 'color', '#008edd');
 
     if (this.alterRut) {
       const cleanRut = this.cleanRut(this.alterRut);
@@ -159,21 +219,86 @@ export class LoginComponent implements OnInit {
         this.verificationDigit = this.calcDigitVer(partialRut);
 
         if (this.verificationDigit !== this.lastDigit) {
-          this.isVisible = true;
-          this.mensajeRut = 'El Rut ingresado es incorrecto.';
-          throw new Error('Rut no válido');
+          //this.isVisible = true;
+          console.log("rut no valido")
+          this.validateRut = false;
+          this.mensajeRut = this.refText.textError;
+          //throw new Error('Rut no válido');
         } else {
-          this.mensajeRut = '';
+          this.validateRut = true;
+          this.mensajeRut = this.refText.text1;
         }
 
       } else {
         this.alterRut = ``;
       }
+    } else {
+      //console.log("rut en blanco")
+
     }
+    this.setEnabled();
+
+
   }
 
   isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
+  }
+<<<<<<< HEAD
+}
+
+=======
+
+  tapRut() {
+    this.setEnabled();
+    console.log("tapRut")
+    const label = this.msjRutLb.nativeElement;
+    this.renderer.setStyle(label, 'color', '#008edd');
+  }
+
+  outRut() {
+    this.onRutPipeAndValidation();
+    if (this.validateRut) {
+      console.log("blurRut")
+      const label = this.msjRutLb.nativeElement;
+      this.renderer.setStyle(label, 'color', '#50535a');
+    } else {
+      const label = this.msjRutLb.nativeElement;
+      this.renderer.setStyle(label, 'color', '#eb3434');
+    }
+    this.setEnabled();
+>>>>>>> fix/login
+
+  }
+
+<<<<<<< HEAD
+
+
+=======
+  outPass() {
+    console.log("outPass")
+    const label = this.msjPassLb.nativeElement;
+    this.renderer.setStyle(label, 'color', '#50535a');
+    this.setEnabled();
+  }
+
+
+  setEnabled() {
+
+    const rut:TextField = <TextField> this.page.getViewById("rut-loginTextField");
+    const password:TextField = <TextField> this.page.getViewById("password-loginTextField");    
+  
+    if (rut.text.length > 0 && password.text.length > 0) {
+      console.log("setEnabled true")
+      const btn = this.buttonIngresar.nativeElement;
+      this.renderer.setAttribute(btn, "isEnabled", "true");
+
+    } else {
+      console.log("setEnabled false",this.alterRut,this.passwordInput )
+      const btn = this.buttonIngresar.nativeElement;
+      this.renderer.setAttribute(btn, "isEnabled", "false");
+    }
+
   }
 }
 
@@ -181,6 +306,7 @@ export class LoginComponent implements OnInit {
 
 
 
+>>>>>>> fix/login
 
 
 
