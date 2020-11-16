@@ -19,8 +19,8 @@ export class LoginService {
         const url = `${this.url.url_base}`+`${this.url.login}`;
         console.log(url);
         //
-        //const bodyData = `username=${'12752279-0'}&password=${'Titi2012'}`; //DEV
-        const bodyData = `username=${username}&password=${password}`; //PROD     
+        const bodyData = `username=${'12752279-0'}&password=${'Titi2012'}`; //DEV
+        //const bodyData = `username=${username}&password=${password}`; //PROD     
         console.log(bodyData);
         const headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
         const params = new HttpParams().set('apikey', 'd01d4fb6-de04-4662-9aa9-7a3fa06cb5c6');
@@ -63,4 +63,7 @@ export class LoginService {
             return responseP1;
         }
     }
+
+     
+
 }

@@ -17,8 +17,9 @@ export class LoginComponent implements OnInit {
   @ViewChild("msjPassLb") msjPassLb: ElementRef;
   @ViewChild("buttonIngresar") buttonIngresar: ElementRef;
   @ViewChild("inputRut") inputRut: ElementRef;
+  @ViewChild("formLogin") formLogin: ElementRef;
 
-
+  
   isAuthenticating = false;
   verificationDigit: string | number;
   data?: string | number;
@@ -57,6 +58,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
 
+  
     this.page.actionBarHidden = true;
 
     this.mensajeRut = this.refText.text1;
@@ -111,17 +113,27 @@ export class LoginComponent implements OnInit {
 
     if (user && password) {
 
-      // this.isLoading = true;
+      this.isLoading = true;
+
+      const form = this.formLogin.nativeElement;
+      this.renderer.setStyle(form, 'opacity', '0.5');
+
       let response = await this.loginService.postLoginP1(user, password);
       console.log("respuesta");
       console.log(response);
-      this.isLoading = true;
+     
+
       if (response) {
 
         console.log("response from p3", response.access_token, response.rut)
         let rut = response.rut + response.dv;
         let access_token = response.access_token;
         this.isLoading = false;
+
+        const form = this.formLogin.nativeElement;
+        this.renderer.setStyle(form, 'opacity', '1');
+        this.renderer.setAttribute(form, "isEnabled", "true");
+
         this.route.navigate(["/listar-empresas", { rut: rut, access_token: access_token }]);
 
       } else {
@@ -211,6 +223,7 @@ export class LoginComponent implements OnInit {
   }
 
   outRut() {
+    this.onRutPipeAndValidation();
     if (this.validateRut) {
       console.log("blurRut")
       const label = this.msjRutLb.nativeElement;

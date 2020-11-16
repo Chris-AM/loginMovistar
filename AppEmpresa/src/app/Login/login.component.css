@@ -12,6 +12,10 @@
     margin-bottom: 70;
 }
 
+.backgroundSpinner {
+    background-image: url("res://bg-dark-l");
+}
+
 .input {
     placeholder-color: #B8B8B8;
     font-size: 15;
@@ -43,6 +47,10 @@
 
 .mb-0 {
     margin-bottom: 0;
+}
+
+.mb-1 {
+    margin-bottom: 5;
 }
 
 .left {
@@ -96,3 +104,10 @@
 .labelrecordar {
     margin-top: 17vh;
 }
+
+
+/*
+.loginSpin {
+    z-index: 1;
+    margin-top: 50%;
+}*/
