@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from '@angular/common/http'
 import { HttpHeaders } from "@angular/common/http";
 import { Endpoints } from '../shared/endpoints/endpoints';
+import { Observable } from "@nativescript/core";
+
 @Injectable({
     providedIn: "root"
 })
@@ -9,12 +11,39 @@ export class LoginService {
 
     private url = new Endpoints();
 
-    act_token:string;
+    act_token: string;
 
-    constructor(private http: HttpClient){}
+    constructor(private http: HttpClient) { }
 
+    // async postLoginP1(username, password) {
+
+    //     const url = `${this.url.url_base}` + `${this.url.login}`;
+    //     //const bodyData = `username=${'12752279-0'}&password=${'Titi2012'}`; //DEV
+    //     const bodyData = `username=${username}&password=${password}`; //PROD     
+
+    //     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    //     const params = new HttpParams().set('apikey', 'd01d4fb6-de04-4662-9aa9-7a3fa06cb5c6');
+
+
+
+    //     this.http.post(url, bodyData, { 'headers': headers, 'params': params }).toPromise().then((resp: any) => {
+    //         const response = { estado: true, respuesta: resp };
+    //         console.log(response);
+    //         // observer.next(response);
+    //         //observer.complete();
+    //     }).catch((errorServicio) => {
+
+    //         const error = { estado: false, error: errorServicio.message };
+    //         console.log(error);
+
+    //         // observer.next(response);
+    //         // observer.complete();
+    //     });
+
+
+    // }
     async postLoginP1(username:string, password:string){
-
+ 
         console.log(username,password);
         const url = `${this.url.url_base}`+`${this.url.login}`;
         console.log(url);
@@ -29,29 +58,26 @@ export class LoginService {
         const codigoEstado = responseP1.estado.codigoEstado
         const act_token = responseP1.datos.act_token
         console.log(codigoEstado);
-
-
+ 
         // if (codigoEstado === "130") {
-
+ 
         //     return responseP1;
         // }
-
-
+ 
         if(username != '12.752.279-0' || password != 'Titi2012') {
             let json = {'estado':false};
             return json
         }
         if (codigoEstado === "200") {
-
+ 
             //authorization
             const url = `${this.url.url_base}`+`${this.url.authorization}`;
             const apikey = 'd01d4fb6-de04-4662-9aa9-7a3fa06cb5c6';
             const bodyData = `act_token=${act_token}&response_type=${'code'}&apikey=${apikey}`;
             const responseP2 = await this.http.post<any>(url, bodyData , {'headers':headers }).toPromise();
-
-
+ 
             if (responseP2.datos.code) {
-
+ 
                 let codeP2 = responseP2.datos.code;
                 //token
                 let url = `${this.url.url_base}` + `${this.url.token}`;
@@ -60,16 +86,13 @@ export class LoginService {
                 //stepThreeKey
                 let redirect_uri = `${this.url.stepThreeKey}`
                 const bodyData = `client_id=${client_id}&client_secret=${client_secret}&code=${codeP2}&redirect_uri=${redirect_uri}&grant_type=${'authorization_code'}`;
-
+ 
                 return await this.http.post<any>(url, bodyData , {'headers':headers }).toPromise();
-
+ 
             }
-
+ 
         }else{
             return responseP1;
         }
     }
-
-
-
 }

@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   @ViewChild("buttonIngresar") buttonIngresar: ElementRef;
   @ViewChild("inputRut") inputRut: ElementRef;
   @ViewChild("formLogin") formLogin: ElementRef;
-
+  @ViewChild("loginSpin") loginSpin: ElementRef;
 
   isAuthenticating = false;
   verificationDigit: string | number;
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
   setColor = false;
   welcome: string = '';
   info: string = '';
-  passHint: string = '';
+  mensajePass: string = '';
   rememberPass: string = '';
   passForgotten: string = '';
   validateRut: boolean;
@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
     this.showHideIcon = this.hideIcon;
     this.welcome = this.refText.welcome;
     this.info = this.refText.info;
-    this.passHint = this.refText.text2;
+    this.mensajePass = this.refText.text2;
     this.rememberPass = this.refText.rememberPass;
     this.passForgotten = this.refText.passForgotten;
   }
@@ -103,9 +103,9 @@ export class LoginComponent implements OnInit {
         0,
       );
     let digit = 11 - (sum % 11);
-    if(digit == 11){
-        digit = 0;
-      }
+    if (digit == 11) {
+      digit = 0;
+    }
     const verificationDigit = digit === 10 ? "k" : String(digit);
     return verificationDigit;
   }
@@ -117,41 +117,49 @@ export class LoginComponent implements OnInit {
 
     if (user && password) {
 
-      this.isLoading = true;
+      const spin = this.loginSpin.nativeElement;
+      this.renderer.setAttribute(spin, 'busy', 'true');
 
       const form = this.formLogin.nativeElement;
       this.renderer.setStyle(form, 'opacity', '0.5');
 
       let response = await this.loginService.postLoginP1(user, password);
-        console.log("--->", response)
-      if ( response.responseBknd.token.codDesc == "OK" ) {
+      console.log("--->", response)
 
-        console.log("response from p3",response.access_token, response.rut)
-        let rut = response.rut + response.dv;
-        let access_token = response.access_token;
-        this.isLoading = false;
-        this.route.navigate(["/listar-empresas",{rut:rut ,access_token:access_token, name: response.responseBknd.token.cliente.nombre, lastName: response.responseBknd.token.cliente.apellido_paterno}]);
+      if (response.estado === false) {
 
-      } else {
-
-        this.isLoading = false;
-        console.log("user or password empty1");
+        const spin = this.loginSpin.nativeElement;
+        this.renderer.setAttribute(spin, 'busy', 'false');
+        const form = this.formLogin.nativeElement;
+        this.renderer.setStyle(form, 'opacity', '1');
 
         const rut = this.inputRut.nativeElement;
         this.renderer.setStyle(rut, 'border-color', '#eb3434');
 
         const pass = this.passwordField.nativeElement;
-        this.renderer.setStyle(rut, 'border-color', '#eb3434');
-        //ponerse en rojo los textfield
+        this.renderer.setStyle(pass, 'border-color', '#eb3434');
+        
+        const msjRut = this.msjRutLb.nativeElement;   
+        const msjPass = this.msjPassLb.nativeElement;   
+     
+        msjRut.text = this.refText.textError;        
+        msjPass.text = this.refText.textError;        
+        this.renderer.setStyle(msjRut, 'color', '#eb3434');        
+        this.renderer.setStyle(msjPass, 'color', '#eb3434');
+
+      } else {
+
+        let rut = response.rut + response.dv;
+        let access_token = response.access_token;
+
+        this.route.navigate(["/listar-empresas", { rut: rut, access_token: access_token, name: response.responseBknd.token.cliente.nombre, lastName: response.responseBknd.token.cliente.apellido_paterno }]);
+
       }
+      
 
     } else {
-
-
-
-      this.isLoading = false;
+      
       this.setColor = true;
-      console.log("user or password empty2");
 
     }
   }
@@ -216,6 +224,8 @@ export class LoginComponent implements OnInit {
     console.log("tapRut")
     const label = this.msjRutLb.nativeElement;
     this.renderer.setStyle(label, 'color', '#008edd');
+    const rut = this.inputRut.nativeElement;
+    this.renderer.setStyle(rut, 'border-color', '#008edd');
   }
 
   outRut() {
@@ -224,9 +234,13 @@ export class LoginComponent implements OnInit {
       console.log("blurRut")
       const label = this.msjRutLb.nativeElement;
       this.renderer.setStyle(label, 'color', '#50535a');
+      const rut = this.inputRut.nativeElement;
+    this.renderer.setStyle(rut, 'border-color', '#50535a');
     } else {
       const label = this.msjRutLb.nativeElement;
       this.renderer.setStyle(label, 'color', '#eb3434');
+      const rut = this.inputRut.nativeElement;
+      this.renderer.setStyle(rut, 'border-color', '#eb3434');
     }
     this.setEnabled();
 
@@ -242,8 +256,8 @@ export class LoginComponent implements OnInit {
 
   setEnabled() {
 
-    const rut:TextField = <TextField> this.page.getViewById("rut-loginTextField");
-    const password:TextField = <TextField> this.page.getViewById("password-loginTextField");
+    const rut: TextField = <TextField>this.page.getViewById("rut-loginTextField");
+    const password: TextField = <TextField>this.page.getViewById("password-loginTextField");
 
     if (rut.text.length > 0 && password.text.length > 0) {
       console.log("setEnabled true")
@@ -251,7 +265,7 @@ export class LoginComponent implements OnInit {
       this.renderer.setAttribute(btn, "isEnabled", "true");
 
     } else {
-      console.log("setEnabled false",this.alterRut,this.passwordInput )
+      console.log("setEnabled false", this.alterRut, this.passwordInput)
       const btn = this.buttonIngresar.nativeElement;
       this.renderer.setAttribute(btn, "isEnabled", "false");
     }
