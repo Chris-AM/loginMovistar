@@ -1,4 +1,4 @@
-<StackLayout class="container" orientation="vertical">
+<StackLayout orientation="vertical" padding="2">
     <StackLayout orientation="vertical" class="header">
         <GridLayout columns="auto" rows="auto">
             <Label color="purple" [text]="search" class="img fa"></Label>
@@ -11,11 +11,23 @@
         </StackLayout>
         <Label class="choose" text="Elige la empresa que quieres gestionar"></Label>
     </StackLayout>
+
+    <!--<Label *ngFor="let item of arrayEmpresas" [text]="item.customerName"></Label>-->
+    <!-- <Image src="res://Next"  width="21" height="31"></Image> -->
     <ListView id="listCompany-CompanyListView" [items]="arrayEmpresas" (itemTap)="onItemTap($event)" class="list-group">
         <ng-template let-item="item">
-            <GridLayout columns="auto,100" rows="auto,auto" width="300">
-                <Label id="nameCompany-CompanyLabel" [text]="item.customerName" col="0" row="0"></Label>
-                <Label id="rutCompany-CompanyLabel" [text]="'Rut: ' + item.customerLegalId" col="0" row="1"></Label>
+            <GridLayout columns="auto,100" rows="auto,auto" padding="2" margin="0">
+                <StackLayout orientation="horizontal">
+                    <Image src="res://store" width="29" height="29" marginLeft="2"></Image>
+                    <!-- <Image src="res://next" class="m-r-0" width="21" height="31"></Image> -->
+                    <StackLayout orientation="vertical" class="ancho">
+                        <Label id="nameCompany-CompanyLabel" class="telfRegular" [text]="item.customerName" col="0" row="0" margin="3" padding="0" marginBottom="0"></Label>
+                        <Label id="rutCompany-CompanyLabel" class="telfLight" [text]="'Rut: ' + item.customerLegalId" col="0" row="1" margin="3" padding="0" top="0"></Label>
+                        <!-- <Image src="res://next" class="m-r-0" width="21" height="31"></Image> -->
+                    </StackLayout>
+
+                    <Image src="res://Next"  width="21" height="31"></Image>
+                </StackLayout>
             </GridLayout>
         </ng-template>
     </ListView>
