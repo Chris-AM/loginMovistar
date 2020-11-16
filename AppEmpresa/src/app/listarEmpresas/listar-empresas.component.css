@@ -1,5 +1,6 @@
 .header{
     background: linear-gradient(180deg, #0C273A 0%, #011422 100%);
+    filter: drop-shadow(80px 90px 10px #4444dd);
 }
 
 .searchStack{
@@ -11,7 +12,8 @@
     margin-top: 48;
     margin-left: 18;
     padding-left: 2;
-    padding-top: 6;
+    /* padding-top: 6; */
+    text-align: left;
     z-index: 1;
   }
 
