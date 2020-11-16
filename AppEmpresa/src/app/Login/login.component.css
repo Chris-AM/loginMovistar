@@ -37,6 +37,12 @@
     margin-bottom: 11;
 }
 
+.bgImage {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
 .center {
     display: block;
     white-space: normal;
