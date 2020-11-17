@@ -255,11 +255,11 @@ export class LoginComponent implements OnInit {
 
 
   setEnabled() {
-
     const rut: TextField = <TextField>this.page.getViewById("rut-loginTextField");
     const password: TextField = <TextField>this.page.getViewById("password-loginTextField");
+    console.log("setEnable",rut.text.length,password.text.length,this.validateRut)
 
-    if (rut.text.length > 0 && password.text.length > 0) {
+    if (rut.text.length > 0 && password.text.length > 0 && this.validateRut) {
       console.log("setEnabled true")
       const btn = this.buttonIngresar.nativeElement;
       this.renderer.setAttribute(btn, "isEnabled", "true");
